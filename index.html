@@ -41,29 +41,31 @@ layout: default
     function drawRegionsMap() {
 
       var data = google.visualization.arrayToDataTable([
-        ['Country'],
-        ['AU'],
-        ['BA'],
-        ['BR'],
-        ['CA'],
-        ['CZ'],
-        ['ES'],
-        ['GB'],
-        ['HU'],
-        ['IS'],
-        ['MK'],
-        ['NZ'],
-        ['RO'],
-        ['RS'],
-        ['TN'],
-        ['UA'],
-        ['UY'],
+        ['Country', 'Quality', {role: 'tooltip', 'p': {html: true}}],
+        ['AU', 1, '<i>Hello</i>'],
+        ['BA', 2, '<i>Hello</i>'],
+        ['BR', 3, '<i>Hello</i>'],
+        ['CA', 1, '<i>Hello</i>'],
+        ['CZ', 2, '<i>Hello</i>'],
+        ['ES', 3, '<i>Hello</i>'],
+        ['GB', 1, '<i>Hello</i>'],
+        ['HU', 2, '<i>Hello</i>'],
+        ['IS', 3, '<i>Hello</i>'],
+        ['MK', 1, '<i>Hello</i>'],
+        ['NZ', 1, '<i>Hello</i>'],
+        ['RO', 1, '<i>Hello</i>'],
+        ['RS', 1, '<i>Hello</i>'],
+        ['TN', 1, '<i>Hello</i>'],
+        ['UA', 1, '<i>Hello</i>'],
+        ['UY', 1, '<i>Hello</i>'],
       ]);
 
 
 
       var options = {
-          colorAxis: {colors: ['#01BFA9', '#01BFA9']}
+          colorAxis: {colors: ['#dc73e6', '#00cbd9', '#01bfa9']},
+          datalessRegionColor: '#e9e9e9',
+          tooltip: {isHtml: true}
       };
 
       var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
