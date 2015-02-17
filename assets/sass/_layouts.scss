@@ -1,0 +1,161 @@
+.layout-equal-columns {
+    .first-column,
+    .second-column {
+        display: inline-block;
+        vertical-align: top;
+        width: 100%;
+    }
+    .first-column {
+        @media (min-width: $medium_screen) {
+            width: 48.5%;
+            margin-right: 3%;
+        }
+
+    }
+    .second-column {
+        @media (min-width: $medium_screen) {
+            width: 48.5%;
+        }
+    }
+}
+
+.layout-quarters {
+    clear: both;
+}
+
+.column-one-quarter {
+    width: 100%;
+    clear: both;
+    @media (min-width: $large_screen) {
+        clear: none;
+        float: left;
+        width: 23.5%;
+        margin-right: 3%;
+    }
+}
+
+.column-three-quarters {
+    width: 100%;
+    @media (min-width: $large_screen) {
+        float: left;
+        width: 73.5%;
+    }
+}
+
+.column-two-thirds {
+    width: 100%;
+    @media (min-width: $large_screen) {
+        float: left;
+        width: 63.333333333%;
+        margin-right: 3%;
+    }
+}
+
+.column-one-third {
+    width: 100%;
+    @media (min-width: $large_screen) {
+        float: left;
+        width: 30.333333333%;
+    }
+}
+
+.column-seven-twelfths {
+    @media (min-width: $large_screen) {
+        width: 55.333333333%;
+        margin-right: 3%;
+        float: left;
+    }
+}
+
+.column-five-twelfths {
+    @media (min-width: $large_screen) {
+        width: 41.6666667%;
+        float: left;
+    }
+}
+
+.layout-quarters--flipped {
+    .column-one-quarter {
+        @media (min-width: $large_screen) {
+            margin-right: 0;
+            margin-left: 3%;
+        }
+
+    }
+}
+
+.layout-grid-boxes {
+    .grid-box {
+        display: inline-block;
+        vertical-align: top;
+        width: 100%;
+        @media (min-width: $medium_screen) {
+            width: 48.5%;
+            margin-right: 3%;
+            &:nth-child(even) {
+                margin-right: 0;
+            }
+        }
+        @media (min-width: $giant_screen) {
+            width: 22.75%;
+            &:nth-child(n) {
+                margin-right: 3%;
+            }
+            &:nth-child(4n+4) {
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+.layout-grid-boxes--thirds {
+    .grid-box {
+        @media (min-width: $giant_screen) {
+            width: 31.333333333%;
+            &:nth-child(n) {
+                margin-right: 3%;
+            }
+            &:nth-child(3n+3) {
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+.layout-grid-boxes--sixths {
+    .grid-box {
+        width: 48.5%;
+        margin-right: 3%;
+        &:nth-child(even) {
+            margin-right: 0;
+        }
+        @media (min-width: $medium_screen) {
+            width: 31.333333333%;
+            &:nth-child(n) {
+                margin-right: 3%;
+            }
+            &:nth-child(3n+3) {
+                margin-right: 0;
+            }
+        }
+        @media (min-width: $large_screen) {
+            width: 22.75%;
+            &:nth-child(n) {
+                margin-right: 3%;
+            }
+            &:nth-child(4n+4) {
+                margin-right: 0;
+            }
+        }
+        @media (min-width: $giant_screen) {
+            width: 14.166666667%;
+            &:nth-child(n) {
+                margin-right: 3%;
+                margin-bottom: 2%;
+            }
+            &:nth-child(6n+6) {
+                margin-right: 0;
+            }
+        }
+    }
+}

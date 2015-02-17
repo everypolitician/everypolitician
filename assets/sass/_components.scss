@@ -1,0 +1,163 @@
+.container {
+    margin: 0 auto;
+    max-width: 71.111111111em;
+    padding: 0 1em;
+    position: relative;
+    @media (min-width: $medium-screen) {
+        padding: 0 2em;
+    }
+}
+
+.container--flush {
+    padding: 0;
+    @media (min-width: 80em) {
+        padding: 0 2em;
+    }
+}
+
+.container--superwide--flush {
+    padding: 0;
+    max-width: 86.666666667em;
+    @media (min-width: 1600px) {
+        padding:  0 2em;
+    }
+}
+
+.unstyled-list {
+    list-style: none outside none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.inline-list {
+    margin-bottom: 0;
+    margin-left: -0.5em;
+    li {
+        display: inline-block;
+        margin-left: 0.5em;
+    }
+}
+
+.button {
+    background-color: $colour_green;
+    @include vendor-prefix(border-radius, $border_radius);
+    border: 0;
+    color: $colour_white;
+    display: inline-block;
+    font-weight: $body_typeface_bold;
+    padding: 0.75em 1.5em;
+    @include vendor-prefix(transition, background-color $animation-short);
+    &:hover,
+    &:active,
+    &:focus {
+        background-color: darken($colour_green, 5%);
+        color: $colour_white;
+        @include vendor-prefix(transition, background-color $animation-short);
+    }
+}
+
+.button--secondary {
+    background-color: $colour_red;
+    &:hover,
+    &:active,
+    &:focus {
+        background-color: darken($colour_red, 5%);
+    }
+}
+
+.button--tertiary {
+    background-color: $colour_light_grey;
+    color: $colour_dark_grey;
+    &:hover,
+    &:active,
+    &:focus {
+        background-color: darken($colour_light_grey, 5%);
+        color: $colour_black;
+    }
+}
+
+.button--quarternary {
+    background: transparent;
+    color: $colour_dark_grey;
+    font-weight: normal;
+    border: 1px solid rgba(0,0,0,0.1);
+    &:hover,
+    &:active,
+    &:focus {
+        background-color: rgba(0,0,0,0.1);
+        color: $colour_dark_grey;
+    }
+}
+
+.button--block {
+    display: block;
+    margin-bottom: 0.5em;
+    @media(min-width: $medium_screen) {
+        display: inline-block;
+        margin-bottom: 0;
+    }
+}
+
+.dual-buttons {
+    text-align: center;
+}
+
+.dual-button {
+    display: block;
+    @media (min-width: 27em) {
+        display: inline-block;
+    }
+}
+
+.dual-button--first {
+    @media (max-width: 27em) {
+        border-bottom: 0 !important;
+        @include vendor-prefix(border-bottom-left-radius, 0);
+        @include vendor-prefix(border-bottom-right-radius, 0);
+    }
+
+    @media (min-width: 27em) {
+        border-right: 0 !important;
+        @include vendor-prefix(border-top-right-radius, 0);
+        @include vendor-prefix(border-bottom-right-radius, 0);
+    }
+}
+
+.dual-button--second {
+    @media (max-width: 27em) {
+        @include vendor-prefix(border-top-left-radius, 0);
+        @include vendor-prefix(border-top-right-radius, 0);
+    }
+
+    @media (min-width: 27em) {
+        @include vendor-prefix(border-top-left-radius, 0);
+        @include vendor-prefix(border-bottom-left-radius, 0);
+    }
+}
+
+
+%page-section {
+    padding: 2em 0;
+    @media ( min-width: $medium_screen) {
+        padding: 4em 0;
+    }
+}
+
+.light-page-section {
+    @extend %page-section;
+    background-color: $colour_off_white;
+}
+
+.dark-page-section {
+    @extend %page-section;
+    color: #fff;
+    background-color: $colour_black;
+    a {
+        color: #fff;
+    }
+}
+
+.hero {
+    @extend %page-section;
+    text-align: center;
+}
