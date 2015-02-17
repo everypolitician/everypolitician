@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>OpenPoliticians</title>
+    <link href="assets/css/global.css" rel="stylesheet" type="text/css" media="all">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,900,700,500,300,400italic' rel='stylesheet' type='text/css'>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0">
+    <script src="assets/scripts/dropzone.js"></script>
+    <script>
+        Dropzone.options.myAwesomeDropzone = {
+            dictDefaultMessage: "Drag and drop your file here, or click to upload",
+            uploadMultiple: false,
+            createImageThumbnails: false,
+            acceptedFiles: 'text/csv'
+        };
+    </script>
+  </head>
+    <body>
+        <div id="wrapper">
+            <!-- Include -->
+            <header class="site-header">
+    <div class="container">
+        <div class="site-header__logo">
+            <a href="/"><h1>OpenPoliticians</h1></a>
+        </div>
+        <div class="site-header__navigation">
+            <nav role="navigation">
+                <a href="/about">About</a>
+                <a href="/about">License</a>
+            </nav>
+        </div>
+    </div>
+</header>
+
+            <!-- Content block, child page inject content -->
+            
+	<div class="hero hero--homepage hero--blue">
+        <div class="container">
+            <h1>Convert your CSV of politicians into useful JSON</h1>
+            <p class="subtitle">and help us create a publicly available, open list of all the world’s politicians</p>
+
+            <div class="upload-area">
+                 <form action="/step-2"
+              class="dropzone uploader"
+              id="my-awesome-dropzone">
+                    <p class="drag-and-drop">
+                        Drag &amp; Drop
+                    </p>
+
+                    <div class="fallback">
+                        <input name="file" type="file" multiple />
+                    </div>
+                </form>
+
+            </div>
+            <div class="preview-area">
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="homepage-map">
+        <div class="container">
+            <h2>Plot our progress</h2>
+            <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['geochart']}]}"></script>
+       <div id="regions_div" class="map-regions" style="width: 100%; height: 500px;"></div>
+        </div>
+    </div>
+    <script>
+          google.setOnLoadCallback(drawRegionsMap);
+
+      function drawRegionsMap() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Country'],
+          ['AU'],
+          ['BA'],
+          ['BR'],
+          ['CA'],
+          ['CZ'],
+          ['ES'],
+          ['GB'],
+          ['HU'],
+          ['IS'],
+          ['MK'],
+          ['NZ'],
+          ['RO'],
+          ['RS'],
+          ['TN'],
+          ['UA'],
+          ['UY'],
+        ]);
+
+
+
+        var options = {
+            colorAxis: {colors: ['#01BFA9', '#01BFA9']}
+        };
+
+        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
+
+
+
+
+            <footer class="site-footer">
+    <div class="container">
+        <div class="column-five-twelfths">
+            <div class="footer__about">
+                <h2 class="tiny-logo">OpenPoliticians</h2>
+                <p>OpenPoliticians is a tiny project, from the folks that brought you <a href="http://mapit.poplus.org/">MapIt</a>, <a href="http://sayit.poplus.org/">SayIt</a>, &amp; <a href="http://popit.poplus.org/">PopIt</a>. OpenPoliticians is a <a href="http://poplus.org">Poplus</a> project</p>
+            </div>
+        </div>
+        <div class="column-seven-twelfths">
+            <div class="footer__about">
+                <nav role="navigation">
+                    <a href="/about">About</a>
+                    <a href="/about">License</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</footer>
+
+        </div>
+        <!-- Script block allowing child pages to inject their own scripts -->
+        
+        <script src="app.js"></script>
+
+    </body>
+</html>
