@@ -40,6 +40,10 @@
     }
 }
 
+.upload-area {
+    position: relative;
+}
+
 .uploader {
     background-color: rgba(255,255,255,0.3);
     min-height: 11em;
@@ -92,9 +96,18 @@
 }
 
 .dz-preview {
-    background-color: rgba(0,0,0,0.3);
+    background-color: $colour_white;
+    color: $colour_black;
     padding: 0 1em 1em;
-    @include vendor-prefix(border-radius, ($border_radius));
-    width: 12em;
+    @include vendor-prefix(border-radius, $border_radius);
+    @include vendor-prefix(box-shadow, (0 0 9px 1px rgba(0,0,0,0.2)));
     margin: 0 auto;
+    min-height: 13em;
+    max-width: 20em;
+    width: 20em;
+    z-index: 100;
+    top: 0;
+    left: 50%;
+    margin-left: -10em;
+    position: absolute;
 }
