@@ -52,16 +52,13 @@ any stage, and we’ll be encouraging people to do just that later.
 
 ## What next?
 
-Each jurisdiction’s data will be used to populate a PopIt site, like
-[this](https://sinar-malaysia.popit.mysociety.org/). These can be used
-as standalone resources to publish politicians’ details, but they can
-also be used in bigger projects, such as making it easy to [track what
-those politicians say](http://sayit.poplus.org/), or for citizens to
-[send public messages to them](http://writeit.poplus.org/). 
+Each jurisdiction’s data can be used to populate a PopIt site, like
+[this](https://sinar-malaysia.popit.mysociety.org/). 
 
-PopIt sites are also open to everyone, to use and also to edit. The data
-in every PopIt site can be accessed via an API, so it can be used as the
-foundation for web tools.
+PopIt sites are  open to everyone, to use and also to edit. The data in every PopIt site can be accessed via an API, so it can be used as the foundation for any web tool.
+
+PopIt sites can be used as standalone resources to publish politicians’ details, but they can also be used in bigger projects, such as making it easy to [track what those politicians say](http://sayit.poplus.org/), or for citizens to
+[send public messages to them](http://writeit.poplus.org/). 
 
 As we collect more data from more countries, all in the same format,
 more and more tools will become possible.
