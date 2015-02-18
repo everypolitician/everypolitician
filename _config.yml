@@ -1,7 +1,7 @@
 # Site settings
 title: OpenPoliticians
 email: tony@mysociety.org
-description: > # Help build a public list of every politician in the world
+description: > # Help build a public list of every politician in the worldje
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://openpoliticians.org/" # the base hostname & protocol for your site
 twitter_username: jekyllrb
