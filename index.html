@@ -62,7 +62,10 @@ layout: default
       var options = {
           colorAxis: {colors: ['#dc73e6', '#00cbd9', '#01bfa9']},
           datalessRegionColor: '#e9e9e9',
-          tooltip: {isHtml: true},
+          tooltip: {
+              isHtml: true,
+              trigger: 'selection'
+          },
           legend: 'none'
       };
 
