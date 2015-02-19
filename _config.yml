@@ -12,3 +12,5 @@ markdown: kramdown
 sass:
     style: :compressed
     sass_dir: _sass
+
+csv_to_popolo_url: https://enigmatic-mesa-3061.herokuapp.com/convert
