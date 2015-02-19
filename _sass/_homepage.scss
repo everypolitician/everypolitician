@@ -29,6 +29,11 @@
     }
     .subtitle {
         opacity: 0.8;
+        margin-top: 3.3em;
+        a {
+            opacity: 1;
+            text-decoration: none;
+        }
     }
     a {
         color: $colour_white;
