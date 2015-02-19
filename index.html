@@ -10,6 +10,18 @@ layout: default
             <li class="step three">Now anyone can use it to build web tools</li>
           </ol>
           <p class="subtitle"><a href="{{ site.baseurl }}/about">Read more about the project &rarr;</a></p>
+          <div class="upload-area">
+            <form action="{{ site.baseurl }}/step-2" class="dropzone uploader" id="my-awesome-dropzone">
+              <p class="drag-and-drop">
+                  Drag &amp; Drop
+              </p>
+
+              <div class="fallback">
+                  <input name="file" type="file" multiple />
+              </div>
+            </form>
+            <div class="preview-area dropzone-previews"></div>
+          </div>
       </div>
   </div>
 
