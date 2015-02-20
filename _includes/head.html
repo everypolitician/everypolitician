@@ -7,22 +7,8 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,900,700,500,300,400italic' rel='stylesheet' type='text/css'>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0">
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-    <script src="{{ site.baseurl }}/assets/scripts/dropzone.js"></script>
-    <script>
-      Dropzone.options.myAwesomeDropzone = {
-        dictDefaultMessage: "Drag and drop your file here, or click to upload",
-        uploadMultiple: false,
-        createImageThumbnails: false,
-        acceptedFiles: 'text/csv',
-        previewsContainer: '.preview-area',
-        paramName: 'csv',
-        init: function() {
-          this.on('success', function(file, json) {
-            // Post json over to popit importer
-            // debugger
-          });
-        }
-      };
-    </script>
-
-  </head>
+    <meta name="popit-instance-url-template" content="{{ site.popit_instance_url_template }}" />
+    <script src="{{ site.baseurl }}/assets/scripts/jquery-2.1.3.min.js"></script>
+    <script src="{{ site.baseurl }}/assets/scripts/dropzone.min.js"></script>
+    <script src="{{ site.baseurl }}/assets/scripts/main.js"></script>
+</head>
