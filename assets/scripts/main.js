@@ -21,6 +21,7 @@
     popitImport(instance, json)
     .done(function(response) {
       console.log("Success: ", response.result['url']);
+      $('#polling_status').text("Status check at: " + response.result['url']);
     })
     .fail(function(xhr, textStatus, errorThrown) {
       console.error("Couldn't start import:", xhr.status);
@@ -28,8 +29,15 @@
   };
 
   function polling_box(instance) {
-    return $('<p />', { text: "Uploading to " + instance + "..." });
+    return $('<p />', { 
+      text: "Uploading to " + instance + "...",
+    })
+    .append( $('<p />', { 
+      id: 'polling_status', 
+      text: 'in progress', 
+    }).css('font-style', 'italic' ));
   };
+      
 
   function displayJSON(json) { 
     var json_preview = $('<div/>', { 
