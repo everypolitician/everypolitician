@@ -24,6 +24,13 @@
       $('#polling_status').text("Status check at: " + response.result['url']);
     })
     .fail(function(xhr, textStatus, errorThrown) {
+      // TODO trap different types of error
+      // 404 = no such instance
+      // 401 = not yours (or not logged in)
+      $('#polling_status').text("ERROR!").css({
+        'color': 'red',
+        'font-weight': 'bold',
+      });
       console.error("Couldn't start import:", xhr.status);
     });
   };
@@ -34,6 +41,7 @@
     })
     .append( $('<p />', { 
       id: 'polling_status', 
+      // This will be replaced by sendToPopit
       text: 'in progress', 
     }).css('font-style', 'italic' ));
   };
