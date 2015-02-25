@@ -27,6 +27,10 @@
     });
   };
 
+  function polling_box(instance) {
+    return $('<p />', { text: "Uploading to " + instance + "..." });
+  };
+
   function displayJSON(json) { 
     var json_preview = $('<div/>', { 
       'html': "<pre>" + JSON.stringify(json, null, 2) + "</pre>"
@@ -55,6 +59,7 @@
         $("#input_instance").css('border-color', 'red');
       } else { 
         sendToPopit(json, instance);
+        $(".preview-area").html(polling_box(instance));
       }
       e.preventDefault();
     });
