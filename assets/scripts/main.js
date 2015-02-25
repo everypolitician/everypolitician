@@ -49,8 +49,13 @@
         'text': "Upload to PopIt"
       })
     ).submit(function(e) { 
-      // TODO: validate 
-      sendToPopit(json, $("#input_instance").val());
+      var instance = $("#input_instance").val();
+      if (instance == '') {
+          // TODO do something better here to alert to the problem
+        $("#input_instance").css('border-color', 'red');
+      } else { 
+        sendToPopit(json, instance);
+      }
       e.preventDefault();
     });
     $("#my-awesome-dropzone").hide();
