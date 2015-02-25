@@ -16,9 +16,9 @@
     });
   }
 
-  function sendToPopit(json) { 
-    console.log("Sending...");
-    popitImport('welshassembly', json)
+  function sendToPopit(json, instance) { 
+    console.log("Submitting to " + instance);
+    popitImport(instance, json)
     .done(function(response) {
       console.log("Success: ", response.result['url']);
     })
@@ -35,11 +35,26 @@
       'font-size': 'small',
       'text-align': 'left'
     });
-    var button = $('<button />', { 
-      'text': "Upload to PopIt"
-    }).click(function() { sendToPopit(json) });
+
+    var upload_form = $('<form />').append(
+      $('<input />', {
+        id: 'input_instance',
+        type: 'text',
+        placeholder: 'name',
+        name: 'instance',
+      })
+    ).append(
+      $('<button />', { 
+        'type': 'submit',
+        'text': "Upload to PopIt"
+      })
+    ).submit(function(e) { 
+      // TODO: validate 
+      sendToPopit(json, $("#input_instance").val());
+      e.preventDefault();
+    });
     $("#my-awesome-dropzone").hide();
-    $(".preview-area").text('').append(button).append(json_preview);
+    $(".preview-area").text('').append(upload_form).append(json_preview);
   };
 
 
