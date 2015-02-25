@@ -16,6 +16,33 @@
     });
   }
 
+  function sendToPopit(json) { 
+    console.log("Sending...");
+    popitImport('welshassembly', json)
+    .done(function(response) {
+      console.log("Success: ", response.result['url']);
+    })
+    .fail(function(xhr, textStatus, errorThrown) {
+      console.error("Couldn't start import:", xhr.status);
+    });
+  };
+
+  function displayJSON(json) { 
+    var json_preview = $('<div/>', { 
+      'html': "<pre>" + JSON.stringify(json, null, 2) + "</pre>"
+    }).css({ 
+      'color': 'black', 
+      'font-size': 'small',
+      'text-align': 'left'
+    });
+    var button = $('<button />', { 
+      'text': "Upload to PopIt"
+    }).click(function() { sendToPopit(json) });
+    $("#my-awesome-dropzone").hide();
+    $(".preview-area").text('').append(button).append(json_preview);
+  };
+
+
   Dropzone.options.myAwesomeDropzone = {
     dictDefaultMessage: "Drag and drop your file here, or click to upload",
     uploadMultiple: false,
@@ -25,15 +52,7 @@
     paramName: 'csv',
     init: function() {
       this.on('success', function(file, json) {
-        // Post json over to popit importer
-        console.log("Sending...");
-        popitImport('welshassembly', json)
-        .done(function(response) {
-          console.log("Success: ", response.result['url']);
-        })
-        .fail(function(xhr, status, errorThrown) {
-          console.error("Couldn't start import:", errorThrown);
-        });
+        displayJSON(json);
       });
     }
   };
