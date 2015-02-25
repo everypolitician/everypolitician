@@ -26,9 +26,10 @@
     init: function() {
       this.on('success', function(file, json) {
         // Post json over to popit importer
-        popitImport('import-test1', json)
+        console.log("Sending...");
+        popitImport('welshassembly', json)
         .done(function(response) {
-          console.log(response);
+          console.log("Success: ", response.result['url']);
         })
         .fail(function(xhr, status, errorThrown) {
           console.error("Couldn't start import:", errorThrown);
