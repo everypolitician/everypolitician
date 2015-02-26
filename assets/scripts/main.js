@@ -17,7 +17,7 @@
   }
 
   function display_polling_message(msg) { 
-    return $('#polling_status').text(msg)
+    return $('#polling_status').html(msg)
   }
 
   function display_polling_error(msg) { 
@@ -38,7 +38,11 @@
       console.log("POLLED: ", response);
       var import_status = response.result['status'];
       if (import_status == 'complete') { 
-        display_polling_message("Wahey: " + JSON.stringify(response.result['counts'], null, 2));
+        var counts = response.result['counts'];
+        var site_url = url.replace(/\/api\/v.*/,'/');
+        var message = "Wahey! Uploaded " + counts['persons'] + " people" +  "<br>" + 
+           "Now visit your instance at: <a href='" + site_url + "'>" + site_url + "</a>"
+        display_polling_message(message)
         //
       } else if (import_status == 'pending') { 
         display_polling_message("Still pending...");
