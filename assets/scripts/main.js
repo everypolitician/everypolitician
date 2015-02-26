@@ -16,12 +16,28 @@
     });
   }
 
+  function poll_for_completion(url) { 
+    console.log("Looking up " + url);
+    $.ajax({
+      type: 'GET',
+      url: url,
+      // xhrFields: { withCredentials: true }
+    })
+    .done(function(response) {
+      console.log("POLLED: ", response)
+    })
+    .fail(function(jsxhr, textStatus, error) { 
+      console.log("ERROR POLLING", jsxhr)
+    });
+  }
+
   function sendToPopit(json, instance) { 
     console.log("Submitting to " + instance);
     popitImport(instance, json)
     .done(function(response) {
       console.log("Success: ", response.result['url']);
       $('#polling_status').text("Status check at: " + response.result['url']);
+      poll_for_completion(response.result['url']);
     })
     .fail(function(xhr, textStatus, errorThrown) {
       // TODO trap different types of error
@@ -45,7 +61,6 @@
       text: 'in progress', 
     }).css('font-style', 'italic' ));
   };
-      
 
   function displayJSON(json) { 
     var json_preview = $('<div/>', { 
