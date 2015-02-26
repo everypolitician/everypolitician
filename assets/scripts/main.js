@@ -27,7 +27,7 @@
       });
   }
 
-  function poll_for_completion(url) { 
+  function poll_for_completion(url, delay) { 
     console.log("Looking up " + url);
     $.ajax({
       type: 'GET',
@@ -45,9 +45,8 @@
         display_polling_message(message)
         //
       } else if (import_status == 'pending') { 
-        display_polling_message("Still pending...");
-        // TODO: exponential backoff?
-        setTimeout(function() { poll_for_completion(url) }, 2000);
+        display_polling_message("Still pending... wait " + delay);
+        setTimeout(function() { poll_for_completion(url, delay + 1000) }, delay);
       } else {
         // what to do here?
         display_polling_error("Ouch! Unknown status: " + import_status);
@@ -65,7 +64,7 @@
     .done(function(response) {
       console.log("Success: ", response.result['url']);
       display_polling_message("Status check at: " + response.result['url']);
-      poll_for_completion(response.result['url']);
+      poll_for_completion(response.result['url'], 1000);
     })
     .fail(function(xhr, textStatus, errorThrown) {
       // TODO trap different types of error
