@@ -16,6 +16,17 @@
     });
   }
 
+  function display_polling_message(msg) { 
+    return $('#polling_status').text(msg)
+  }
+
+  function display_polling_error(msg) { 
+    display_polling_message(msg).css({
+        'color': 'red',
+        'font-weight': 'bold',
+      });
+  }
+
   function poll_for_completion(url) { 
     console.log("Looking up " + url);
     $.ajax({
@@ -24,10 +35,23 @@
       // xhrFields: { withCredentials: true }
     })
     .done(function(response) {
-      console.log("POLLED: ", response)
+      console.log("POLLED: ", response);
+      var import_status = response.result['status'];
+      if (import_status == 'complete') { 
+        display_polling_message("Wahey: " + JSON.stringify(response.result['counts'], null, 2));
+        //
+      } else if (import_status == 'pending') { 
+        display_polling_message("Still pending...");
+        // TODO: exponential backoff?
+        setTimeout(function() { poll_for_completion(url) }, 2000);
+      } else {
+        // what to do here?
+        display_polling_error("Ouch! Unknown status: " + import_status);
+      }
     })
     .fail(function(jsxhr, textStatus, error) { 
       console.log("ERROR POLLING", jsxhr)
+      display_polling_error("Ouch! Polling failed!");
     });
   }
 
@@ -36,17 +60,14 @@
     popitImport(instance, json)
     .done(function(response) {
       console.log("Success: ", response.result['url']);
-      $('#polling_status').text("Status check at: " + response.result['url']);
+      display_polling_message("Status check at: " + response.result['url']);
       poll_for_completion(response.result['url']);
     })
     .fail(function(xhr, textStatus, errorThrown) {
       // TODO trap different types of error
       // 404 = no such instance
       // 401 = not yours (or not logged in)
-      $('#polling_status').text("ERROR!").css({
-        'color': 'red',
-        'font-weight': 'bold',
-      });
+      display_polling_error("Error!")
       console.error("Couldn't start import:", xhr.status);
     });
   };
