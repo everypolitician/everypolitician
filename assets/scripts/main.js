@@ -16,18 +16,15 @@
     });
   }
 
-  function display_polling_message(msg) { 
+  function display_polling_message(msg) {
     return $('#polling_status').html(msg)
   }
 
-  function display_polling_error(msg) { 
-    display_polling_message(msg).css({
-        'color': 'red',
-        'font-weight': 'bold',
-      });
+  function display_polling_error(msg) {
+    display_polling_message(msg);
   }
 
-  function poll_for_completion(url, delay) { 
+  function poll_for_completion(url, delay) {
     console.log("Looking up " + url);
     $.ajax({
       type: 'GET',
@@ -37,14 +34,14 @@
     .done(function(response) {
       console.log("POLLED: ", response);
       var import_status = response.result['status'];
-      if (import_status == 'complete') { 
+      if (import_status == 'complete') {
         var counts = response.result['counts'];
         var site_url = url.replace(/\/api\/v.*/,'/');
-        var message = "Wahey! Uploaded " + counts['persons'] + " people" +  "<br>" + 
+        var message = "Wahey! Uploaded " + counts['persons'] + " people" +  "<br>" +
            "Now visit your instance at: <a href='" + site_url + "'>" + site_url + "</a>"
         display_polling_message(message)
         //
-      } else if (import_status == 'pending') { 
+      } else if (import_status == 'pending') {
         display_polling_message("Still pending... wait " + delay);
         setTimeout(function() { poll_for_completion(url, delay + 1000) }, delay);
       } else {
@@ -52,13 +49,13 @@
         display_polling_error("Ouch! Unknown status: " + import_status);
       }
     })
-    .fail(function(jsxhr, textStatus, error) { 
+    .fail(function(jsxhr, textStatus, error) {
       console.log("ERROR POLLING", jsxhr)
       display_polling_error("Ouch! Polling failed!");
     });
   }
 
-  function sendToPopit(json, instance) { 
+  function sendToPopit(json, instance) {
     console.log("Submitting to " + instance);
     popitImport(instance, json)
     .done(function(response) {
@@ -70,49 +67,53 @@
       // TODO trap different types of error
       // 404 = no such instance
       // 401 = not yours (or not logged in)
-      display_polling_error("Error!")
+      display_polling_error("Error! Couldn't start import:", xhr.status)
       console.error("Couldn't start import:", xhr.status);
     });
   };
 
   function polling_box(instance) {
-    return $('<p />', { 
-      text: "Uploading to " + instance + "...",
+    return $('<p />', {
+      text: "Uploading to " + instance + ".popit.mysociety.org ...",
     })
-    .append( $('<p />', { 
-      id: 'polling_status', 
+    .append( $('<p />', {
+      id: 'polling_status',
       // This will be replaced by sendToPopit
-      text: 'in progress', 
-    }).css('font-style', 'italic' ));
+      text: 'in progress',
+    }));
   };
 
-  function displayJSON(json) { 
-    var json_preview = $('<div/>', { 
+  function displayJSON(json) {
+    var json_preview = $('<div/>', {
       'html': "<pre>" + JSON.stringify(json, null, 2) + "</pre>"
-    }).css({ 
-      'color': 'black', 
+    }).css({
+      'color': 'black',
       'font-size': 'small',
       'text-align': 'left'
     });
 
     var upload_form = $('<form />').append(
+      $("<h1>Here's your data</h1><h2 class='tertiary-heading'>Add to PopIt</h2><p>Enter the name of a Popit we can upload this data to.</p>")
+    ).append(
       $('<input />', {
         id: 'input_instance',
         type: 'text',
-        placeholder: 'name',
+        placeholder: 'PopIt name',
         name: 'instance',
+        class: 'popit-name-form-field'
       })
     ).append(
-      $('<button />', { 
+      $('<button />', {
         'type': 'submit',
-        'text': "Upload to PopIt"
+        'text': "Upload to PopIt",
+        'class': 'button button--secondary popit-upload-button'
       })
-    ).submit(function(e) { 
+    ).submit(function(e) {
       var instance = $("#input_instance").val();
       if (instance == '') {
           // TODO do something better here to alert to the problem
         $("#input_instance").css('border-color', 'red');
-      } else { 
+      } else {
         sendToPopit(json, instance);
         $(".preview-area").html(polling_box(instance));
       }
@@ -124,15 +125,17 @@
 
 
   Dropzone.options.myAwesomeDropzone = {
-    dictDefaultMessage: "Drag and drop your file here, or click to upload",
+    dictDefaultMessage: "Drag and drop your .CSV file here, or click to browse",
     uploadMultiple: false,
     createImageThumbnails: false,
     acceptedFiles: 'text/csv',
     previewsContainer: '.preview-area',
     paramName: 'csv',
+    addRemoveLinks: false,
     init: function() {
       this.on('success', function(file, json) {
         displayJSON(json);
+        $( "#js-welcome-message" ).remove();
       });
     }
   };
