@@ -100,7 +100,8 @@
         type: 'text',
         placeholder: 'PopIt name',
         name: 'instance',
-        class: 'popit-name-form-field'
+        class: 'popit-name-form-field',
+        required: true
       })
     ).append(
       $('<button />', {
