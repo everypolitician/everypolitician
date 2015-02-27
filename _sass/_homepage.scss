@@ -65,16 +65,15 @@
     font-weight: $body_typeface_semibold;
     line-height: 1.35em;
     &:before {
-            position: absolute;
-            top: 45px;
-            left: 50%;
-            margin-left: -43px;
-            font-size: 9em;
-
-            color: $colour_black;
-            z-index: -1;
-            text-shadow: 1px 1px 0 rgba(255,255,255,0.6);
-            opacity: 0.2;
+        position: absolute;
+        top: 45px;
+        left: 50%;
+        margin-left: -43px;
+        font-size: 9em;
+        color: $colour_black;
+        z-index: -1;
+        text-shadow: 1px 1px 0 rgba(255,255,255,0.6);
+        opacity: 0.2;
     }
 }
 
@@ -92,53 +91,6 @@
     content: ":)";
 }
 
-.add-heading {
-    margin-top: 2em;
-}
-
-.upload-area {
-    position: relative;
-}
-
-.uploader {
-    background-color: rgba(255,255,255,0.3);
-    min-height: 11em;
-    max-width: 20em;
-    margin: 1em auto 2em;
-    @include vendor-prefix(border-radius, ($border_radius * 2));
-    position: relative;
-    border: 5px dashed rgba(0,0,0,0.2);
-    transition: all $animation-short;
-    &:hover {
-        cursor: pointer;
-        border-color: rgba(0,0,0,0.4);
-        background-color: rgba(255,255,255,0.4);
-        transition: all $animation-short;
-        .drag-and-drop {
-            color: rgba(0,0,0,0.5);
-            transition: color $animation-short;
-        }
-    }
-}
-
-.drag-and-drop {
-    color: rgba(0,0,0,0.3);
-    font-weight: $body_typeface_bold;
-    font-size: 1.5em;
-    position: absolute;
-    top: 27%;
-    text-align: center;
-    width: 100%;
-    z-index: 50;
-    text-transform: uppercase;
-    transition: color $animation-short;
-}
-
-.dz-message {
-    position: absolute;
-    top: 50%;
-    padding: 0 3em;
-}
 
 .homepage-map {
     @extend %page-section;
@@ -154,27 +106,6 @@
     }
 }
 
-.dz-preview {
-    background-color: $colour_white;
-    color: $colour_black;
-    padding: 0 1em 1em;
-    @include vendor-prefix(border-radius, $border_radius);
-    @include vendor-prefix(box-shadow, (0 0 9px 1px rgba(0,0,0,0.2)));
-    margin: 0 auto;
-    min-height: 13em;
-    max-width: 20em;
-    width: 20em;
-    z-index: 100;
-    top: 0;
-    left: 50%;
-    margin-left: -10em;
-    position: absolute;
-}
-
-.dz-success-mark,
-.dz-error-mark {
-    display: none;
-}
 
 
 .google-visualization-tooltip-item {
@@ -193,15 +124,4 @@
 
 .google-visualization-tooltip {
     border: 1px solid $colour_borders !important;
-}
-
-.popit-upload-button {
-    @include vendor-prefix(border-top-left-radius, 0);
-    @include vendor-prefix(border-bottom-left-radius, 0);
-}
-
-input.popit-name-form-field {
-    @include vendor-prefix(border-top-right-radius, 0);
-    @include vendor-prefix(border-bottom-right-radius, 0);
-    margin-bottom: 1em;
 }
