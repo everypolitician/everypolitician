@@ -57,9 +57,10 @@ permalink: /upload/
 
     <p>Anything not in this list will probably just be ignored.</p>
 
-    <p>You can play around with this tool as much as you like to see
+    <p>You can play around with this tool as much as you want, to see
     what the results look like. When you get something you‘re happy with,
-    we can then also help you put that into a PopIt.</p>
+    we can then also help you put that into a 
+    <a href="http://popit.poplus.org/">PopIt</a>.</p>
 
   </div>
 

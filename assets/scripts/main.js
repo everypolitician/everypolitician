@@ -37,12 +37,11 @@
       if (import_status == 'complete') {
         var counts = response.result['counts'];
         var site_url = url.replace(/\/api\/v.*/,'/');
-        var message = "Wahey! Uploaded " + counts['persons'] + " people" +  "<br>" +
-           "Now visit your instance at: <a href='" + site_url + "'>" + site_url + "</a>"
-        display_polling_message(message)
-        //
+        var message = "<h1>Uploaded!</h1><p>We succesfully imported " + counts['persons'] + " people.</p>" + 
+           "<p>Now visit your instance at: <a href='" + site_url + "'>" + site_url + "</a></p>";
+        $(".preview-area").html(message);
       } else if (import_status == 'pending') {
-        display_polling_message("Still pending... wait " + delay);
+        display_polling_message("Still pending. Waiting another " + (delay/1000) + " seconds before checking again.");
         setTimeout(function() { poll_for_completion(url, delay + 1000) }, delay);
       } else {
         // what to do here?
@@ -61,7 +60,7 @@
     .done(function(response) {
       console.log("Success: ", response.result['url']);
       display_polling_message("Status check at: " + response.result['url']);
-      poll_for_completion(response.result['url'], 1000);
+      poll_for_completion(response.result['url'], 2000);
     })
     .fail(function(xhr, textStatus, errorThrown) {
       // TODO trap different types of error
@@ -73,15 +72,11 @@
   };
 
   function polling_box(instance) {
-    return $('<p />', {
-      text: "Uploading to " + instance + ".popit.mysociety.org ...",
-    })
-    .append( $('<p />', {
-      id: 'polling_status',
-      // This will be replaced by sendToPopit
-      text: 'in progress',
-    }));
-  };
+    return $("<h1>Uploading</h1>\
+        <p>We’re uploading your data to "+instance+".popit.mysociety.org ...</p>\
+        <p>Status: <span id='polling_status'>Waiting</span></p>\
+    ");
+  }
 
   function displayJSON(json) {
     var json_preview = $('<div/>', {
@@ -100,7 +95,7 @@
         <p>If something went wrong, just <a href='/upload'>reload this page</a> and try again.\
         <h2 class='tertiary-heading'>Add to PopIt</h2>\
         <p>We can also insert this data into a PopIt for you, if you’d like.</p>\
-        <p>If you already have an empty PopIt instance, <b>make sure you’re <a href='http://popit.staging.mysociety.org/instances'>logged in to it</a>\
+        <p>If you already have an empty PopIt instance, <b>make sure you’re <a href='http://popit.staging.mysociety.org/instances'>logged in to it</a></b>,\
         then enter its name below. If you don’t have one yet, you can <a href='http://popit.mysociety.org/instances/new'>create one</a>.\
       ")
     ).append(
