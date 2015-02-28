@@ -52,8 +52,9 @@ permalink: /upload/
     <code>honorific_prefix</code>, <code>honorific_suffix</code>,
     <code>patronymic_name</code>, <code>sort_name</code>,
     <code>gender</code>, <code>birth_date</code>, <code>death_date</code>,
-    <code>summary</code>, <code>biography</code>, and
-    <code>national_identity</code>. </p>
+    <code>summary</code>, <code>biography</code>, 
+    <code>national_identity</code>, <code>phone</code>,
+    <code>cell</code>, and <code>fax</code>.
 
     <p>Anything not in this list will probably just be ignored.</p>
 

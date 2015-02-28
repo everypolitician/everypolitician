@@ -21,7 +21,8 @@ new data standard for politicians’ details.
 
 ## How do I get involved?
 
-If you already have Popolo format data for your country’s politicians,
+If you‘ve already published Popolo format data for your country’s
+politicians (or know of such data for a country not on our map),
 let us know, and we’ll add it to the growing list.
 
 If you have the information in another format, and would like assistance
@@ -55,10 +56,14 @@ any stage, and we’ll be encouraging people to do just that later.
 Each jurisdiction’s data can be used to populate a PopIt site, like
 [this](https://sinar-malaysia.popit.mysociety.org/). 
 
-PopIt sites are  open to everyone, to use and also to edit. The data in every PopIt site can be accessed via an API, so it can be used as the foundation for any web tool.
+PopIt sites are open to everyone, to use and also to edit. The data in
+every PopIt site can be accessed via an API, so it can be used as the
+foundation for any web tool.
 
-PopIt sites can be used as standalone resources to publish politicians’ details, but they can also be used in bigger projects, such as making it easy to [track what those politicians say](http://sayit.poplus.org/), or for citizens to
-[send public messages to them](http://writeit.poplus.org/). 
+PopIt sites can be used as standalone resources to publish politicians’
+details, but they can also be used in bigger projects, such as making it
+easy to [track what those politicians say](http://sayit.poplus.org/), or
+for citizens to [send public messages to them](http://writeit.poplus.org/). 
 
 As we collect more data from more countries, all in the same format,
 more and more tools will become possible.
