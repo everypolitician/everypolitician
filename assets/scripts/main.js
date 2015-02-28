@@ -38,20 +38,27 @@
         var counts = response.result['counts'];
         var site_url = url.replace(/\/api\/v.*/,'/');
         var message = "<h1>Uploaded!</h1><p>We succesfully imported " + counts['persons'] + " people.</p>" + 
-           "<p>Now visit your instance at: <a href='" + site_url + "'>" + site_url + "</a></p>";
+           "<p>Now visit your PopIt at: <a href='" + site_url + "'>" + site_url + "</a></p>";
         $(".preview-area").html(message);
       } else if (import_status == 'pending') {
         display_polling_message("Still pending. Waiting another " + (delay/1000) + " seconds before checking again.");
         setTimeout(function() { poll_for_completion(url, delay + 1000) }, delay);
       } else {
-        // what to do here?
-        display_polling_error("Ouch! Unknown status: " + import_status);
+        console.log("Failed: ", import_status);
+        var message = "<h1>Sorry</h1><p>The import failed in a way that we thought was impossible. Please let us know how you got here!"
+        $(".preview-area").html(message);
       }
     })
     .fail(function(jsxhr, textStatus, error) {
+      // Uncomment the withCredential in poll_for_completion to get here
       console.log("ERROR POLLING", jsxhr)
-      display_polling_error("Ouch! Polling failed!");
+      var message = "<h1>Sorry</h1><p>The import failed in a way that we don't understand. Please let us know how you got here!"
+      $(".preview-area").html(message);
     });
+  }
+
+  function instance_url(name) { 
+    return 'http://' + name + '.popit.staging.mysociety.org'
   }
 
   function sendToPopit(json, instance) {
@@ -59,15 +66,19 @@
     popitImport(instance, json)
     .done(function(response) {
       console.log("Success: ", response.result['url']);
-      display_polling_message("Status check at: " + response.result['url']);
       poll_for_completion(response.result['url'], 2000);
     })
     .fail(function(xhr, textStatus, errorThrown) {
       // TODO trap different types of error
       // 404 = no such instance
       // 401 = not yours (or not logged in)
-      display_polling_error("Error! Couldn't start import:", xhr.status)
-      console.error("Couldn't start import:", xhr.status);
+      var message = "<p class='warning'><b>Sorry!</b> " +
+       "We can't upload to <a href='" + instance_url(instance) + "'>" + instance + "</a>. Please make sure that it definitely exists, and that you're currently logged in to it as an administrator. Then try again.</p>";
+      displayJSON(json)
+      $("#popit-submit-form").append($(message).css({ 'background-color': 'yellow' }));
+      // console.log(xhr.getAllResponseHeaders());
+      // console.log("text: " + textStatus);
+      // console.log("ET: " + errorThrown);
     });
   };
 
@@ -87,9 +98,7 @@
       'text-align': 'left'
     });
 
-
-
-    var upload_form = $('<form />').append(
+    var upload_form = $('<form id="popit-submit-form" />').append(
       $("<h1>Here's your data</h1>\
         <p>In the box below you’ll find the Popolo format JSON we generated from your CSV.</p>\
         <p>If something went wrong, just <a href='/upload'>reload this page</a> and try again.\
