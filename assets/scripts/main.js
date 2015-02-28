@@ -58,7 +58,7 @@
   }
 
   function instance_url(name) { 
-    return 'http://' + name + '.popit.staging.mysociety.org'
+    return 'http://' + name + '.popit.mysociety.org'
   }
 
   function sendToPopit(json, instance) {
@@ -104,7 +104,7 @@
         <p>If something went wrong, just <a href='/upload'>reload this page</a> and try again.\
         <h2 class='tertiary-heading'>Add to PopIt</h2>\
         <p>We can also insert this data into a PopIt for you, if you’d like.</p>\
-        <p>If you already have an empty PopIt instance, <b>make sure you’re <a href='http://popit.staging.mysociety.org/instances'>logged in to it</a></b>,\
+        <p>If you already have an empty PopIt instance, <b>make sure you’re <a href='http://popit.mysociety.org/instances'>logged in to it</a></b>,\
         then enter its name below. If you don’t have one yet, you can <a href='http://popit.mysociety.org/instances/new'>create one</a>.\
       ")
     ).append(
