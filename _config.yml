@@ -14,5 +14,4 @@ sass:
     sass_dir: _sass
 
 csv_to_popolo_url: https://enigmatic-mesa-3061.herokuapp.com/convert
-# The '{instance}' part will be replaced with the actual instance name
-popit_instance_url_template: http://{instance}.popit.mysociety.org/api/v0.1/imports
+popit_server: popit.staging.mysociety.org

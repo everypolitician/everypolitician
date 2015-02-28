@@ -1,10 +1,15 @@
 (function($) {
+
+  var SERVER_NAME = $('meta[name="popit-server"]').attr('content');
+
+  function import_endpoint(instance_name) { 
+    return 'http://' + instance_name + '.' + SERVER_NAME + '/api/v0.1/imports'
+  }
+
   function popitImport(instanceSlug, popoloJson) {
-    var popitInstanceUrlTemplate = $('meta[name="popit-instance-url-template"]').attr('content');
-    var url = popitInstanceUrlTemplate.replace('{instance}', instanceSlug);
     return $.ajax({
       type: 'POST',
-      url: url,
+      url: import_endpoint(instanceSlug),
       data: JSON.stringify(popoloJson),
       processData: false,
       dataType: 'json',
@@ -25,14 +30,12 @@
   }
 
   function poll_for_completion(url, delay) {
-    console.log("Looking up " + url);
     $.ajax({
       type: 'GET',
       url: url,
       // xhrFields: { withCredentials: true }
     })
     .done(function(response) {
-      console.log("POLLED: ", response);
       var import_status = response.result['status'];
       if (import_status == 'complete') {
         var counts = response.result['counts'];
@@ -44,7 +47,6 @@
         display_polling_message("Still pending. Waiting another " + (delay/1000) + " seconds before checking again.");
         setTimeout(function() { poll_for_completion(url, delay + 1000) }, delay);
       } else {
-        console.log("Failed: ", import_status);
         var message = "<h1>Sorry</h1><p>The import failed in a way that we thought was impossible. Please let us know how you got here!"
         $(".preview-area").html(message);
       }
@@ -58,14 +60,12 @@
   }
 
   function instance_url(name) { 
-    return 'http://' + name + '.popit.mysociety.org'
+    return 'http://' + name + '.' + SERVER_NAME
   }
 
   function sendToPopit(json, instance) {
-    console.log("Submitting to " + instance);
     popitImport(instance, json)
     .done(function(response) {
-      console.log("Success: ", response.result['url']);
       poll_for_completion(response.result['url'], 2000);
     })
     .fail(function(xhr, textStatus, errorThrown) {
@@ -73,7 +73,7 @@
       // 404 = no such instance
       // 401 = not yours (or not logged in)
       var message = "<p class='warning'><b>Sorry!</b> " +
-       "We can't upload to <a href='" + instance_url(instance) + "'>" + instance + "</a>. Please make sure that it definitely exists, and that you're currently logged in to it as an administrator. Then try again.</p>";
+       "We can't upload to <a href='" + instance_url(instance) + "'>" + instance + "." + SERVER_NAME + "</a>. Please make sure that it definitely exists, and that you're currently logged in to it as an administrator. Then try again.</p>";
       displayJSON(json)
       $("#popit-submit-form").append($(message).css({ 'background-color': 'yellow' }));
       // console.log(xhr.getAllResponseHeaders());
@@ -84,7 +84,7 @@
 
   function polling_box(instance) {
     return $("<h1>Uploading</h1>\
-        <p>We’re uploading your data to "+instance+".popit.mysociety.org ...</p>\
+        <p>We’re uploading your data to " + instance_url(instance) + " ...</p>\
         <p>Status: <span id='polling_status'>Waiting</span></p>\
     ");
   }
@@ -104,8 +104,8 @@
         <p>If something went wrong, just <a href='/upload'>reload this page</a> and try again.\
         <h2 class='tertiary-heading'>Add to PopIt</h2>\
         <p>We can also insert this data into a PopIt for you, if you’d like.</p>\
-        <p>If you already have an empty PopIt instance, <b>make sure you’re <a href='http://popit.mysociety.org/instances'>logged in to it</a></b>,\
-        then enter its name below. If you don’t have one yet, you can <a href='http://popit.mysociety.org/instances/new'>create one</a>.\
+        <p>If you already have an empty PopIt instance, <b>make sure you’re <a href='http://" + SERVER_NAME + "/instances'>logged in to it</a></b>,\
+        then enter its name below. If you don’t have one yet, you can <a href='http://" + SERVER_NAME + "/instances/new'>create one</a>.\
       ")
     ).append(
       $('<input />', {
