@@ -89,6 +89,11 @@
     ");
   }
 
+  // Allow entry of https://welshassembly.popit.mysociety.org/ etc 
+  function popit_name_from(text) { 
+    return text.replace(/^https?:\/\//, '').split('.').shift();
+  }
+
   function displayJSON(json) {
     var json_preview = $('<div/>', {
       'html': "<pre>" + JSON.stringify(json, null, 2) + "</pre>"
@@ -123,9 +128,8 @@
         'class': 'button button--secondary popit-upload-button'
       })
     ).submit(function(e) {
-      var instance = $("#input_instance").val();
+      var instance = popit_name_from( $("#input_instance").val() );
       if (instance == '') {
-          // TODO do something better here to alert to the problem
         $("#input_instance").css('border-color', 'red');
       } else {
         sendToPopit(json, instance);
