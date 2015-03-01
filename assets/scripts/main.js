@@ -40,7 +40,8 @@
       if (import_status == 'complete') {
         var counts = response.result['counts'];
         var site_url = url.replace(/\/api\/v.*/,'/');
-        var message = "<h1>Uploaded!</h1><p>We succesfully imported " + counts['persons'] + " people.</p>" + 
+        var count_txt = (counts['persons'] == 1) ? "one person" : (counts['persons'] + " people");
+        var message = "<h1>Uploaded!</h1><p>We successfully imported " + count_txt + ".</p>" + 
            "<p>Now visit your PopIt at: <a href='" + site_url + "'>" + site_url + "</a></p>";
         $(".preview-area").html(message);
       } else if (import_status == 'pending') {
@@ -87,6 +88,17 @@
         <p>We’re uploading your data to " + instance_url(instance) + " ...</p>\
         <p>Status: <span id='polling_status'>Waiting</span></p>\
     ");
+  }
+
+  function whatsWrongWith(json) {
+    if (!json.hasOwnProperty('error')) { return "We couldn‘t find any records in your CSV file. " }
+    if (json.error['type'] == 'CSV::MalformedCSVError') { return "Your CSV file seems to be malformed." }
+    if (json.error['type'] == 'EOFError') { return "Your CSV file seems to be empty." }
+    return "We have an unexpected error: " + JSON.stringify(json.error);
+  }
+
+  function warnOfNoPersons(json) { 
+    $(".preview-area").html('<h1>Sorry!</h1><p>' + whatsWrongWith(json) + '</p><p>Please try again with another file.</p>');
   }
 
   // Allow entry of https://welshassembly.popit.mysociety.org/ etc 
@@ -152,8 +164,12 @@
     addRemoveLinks: false,
     init: function() {
       this.on('success', function(file, json) {
-        displayJSON(json);
         $( "#js-welcome-message" ).remove();
+        if (json.persons && json.persons.length) { 
+          displayJSON(json);
+        } else { 
+          warnOfNoPersons(json);
+        }
       });
     }
   };
