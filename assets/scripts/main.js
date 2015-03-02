@@ -3,7 +3,11 @@
   var SERVER_NAME = $('meta[name="popit-server"]').attr('content');
 
   function import_endpoint(instance_name) { 
-    return 'http://' + instance_name + '.' + SERVER_NAME + '/api/v0.1/imports'
+    var protocol = 'http';
+    if (SERVER_NAME === 'popit.mysociety.org') {
+      protocol = 'https';
+    }
+    return protocol + '://' + instance_name + '.' + SERVER_NAME + '/api/v0.1/imports'
   }
 
   function popitImport(instanceSlug, popoloJson) {
