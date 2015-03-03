@@ -58,7 +58,7 @@ permalink: /upload/
 
     <h3>Recommended fields</h3>
     <ul>
-      <ol><code>id</code><: A unique id field for each person, and
+      <ol><code>id</code>: A unique id field for each person, and
         <code>party_id</code> for each party (if you don‘t supply these, we‘ll
         create them for you, but they will be different each time you run this,
         which may cause problems later).</ol>
@@ -71,10 +71,10 @@ permalink: /upload/
 
     <ul>
       <ol><code>start_date</code> and <code>end_date</code>, for when
-        they entered or left the Leglislature</ol>
+        they entered or left the legislature</ol>
       <ol><code>executive</code>: If legislators can also hold executive
         positions (President, Prime Minister, Minister of the Environment, etc),
-        you can ilso nclude that information.</ol>
+        you can also include that information.</ol>
     </ul>
 
     <h3>Totally-your-choice fields</h3>
@@ -101,14 +101,11 @@ permalink: /upload/
     </ul>
 
     <p>Anything not in this list will probably just be ignored—but you
-    can play around with this tool as much as you want and see what the
-    results look like.</p>
-
-    <p>Anything not in this list will probably just be ignored.</p>
-
-    <p>You can play around with this tool as much as you want, to see
-    what the results look like. Once you get something you‘re happy
+    can play around with this tool as much as you want to see what the
+    results look like. Once you get something you‘re happy
     with, then you can add it to <a href="http://popit.poplus.org/">PopIt</a>.</p>
+
+    <p><a href="mailto:team@openpoliticians.org">Let us know</a> how you get on—or if we can help.</p>
 
   </div>
 </div>
