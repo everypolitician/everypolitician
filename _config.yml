@@ -14,4 +14,4 @@ sass:
     sass_dir: _sass
 
 csv_to_popolo_url: https://enigmatic-mesa-3061.herokuapp.com/convert
-popit_server: popit.staging.mysociety.org
+popit_server: popit.mysociety.org

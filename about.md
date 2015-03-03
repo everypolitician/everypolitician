@@ -25,10 +25,12 @@ If you‘ve already published Popolo format data for your country’s
 politicians (or know of such data for a country not on our map),
 let us know, and we’ll add it to the growing list.
 
+If you can create a CSV file (for example, by exporting it from a
+spreadsheet) with that information, you can try out our new 
+[CSV to Popolo converter](/upload).
+
 If you have the information in another format, and would like assistance
-converting it to Popolo, talk to us, and we’ll see if we can help. We’re
-building tools to make that process easier, and we’d love to test them
-out on your data.
+converting it to Popolo, talk to us, and we’ll see if we can help. 
 
 ## Which politicians do you care about?
 
