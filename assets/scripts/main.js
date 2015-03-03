@@ -163,6 +163,9 @@
     paramName: 'csv',
     addRemoveLinks: false,
     init: function() {
+      this.on('sending', function(file, xhr, formData) { 
+        $(".dz-progress").text("Converting to JSON — please wait…");
+      });
       this.on('success', function(file, json) {
         $( "#js-welcome-message" ).remove();
         if (json.persons && json.persons.length) { 
@@ -173,4 +176,6 @@
       });
     }
   };
+
+  
 })(window.jQuery);
