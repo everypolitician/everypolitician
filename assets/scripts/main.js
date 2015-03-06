@@ -92,6 +92,16 @@
     return text.replace(/^https?:\/\//, '').split('.').shift();
   }
 
+  function buildUserInstanceList() {
+    var instancesUrl = 'http://popit.staging.mysociety.org/instances.json';
+    $.getJSON(instancesUrl + '?callback=?', function(data) {
+      var instances = $.map(data.result, function(instance, i) { 
+        return instance['name'] || instance['slug']
+      });
+      console.log("Instances: " + instances);
+    });
+  }
+
   function displayJSON(json) {
     $("#popit-submit-form").submit(function(e) {
       var instance = popit_name_from( $("#input_instance").val() );
@@ -130,5 +140,6 @@
     }
   };
 
+  buildUserInstanceList();
   
 })(window.jQuery);
