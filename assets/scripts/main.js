@@ -99,6 +99,14 @@
         return instance['name'] || instance['slug']
       });
       console.log("Instances: " + instances);
+    })
+    .fail(function(jqxhr, textstatus, error) { 
+      if (jqxhr['status'] == 404) { 
+        console.log("Not logged in");
+      } else { 
+        console.log("Error: " + textstatus);
+        console.log(jqxhr);
+      }
     });
   }
 
