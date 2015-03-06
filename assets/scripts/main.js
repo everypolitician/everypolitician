@@ -97,7 +97,11 @@
       var instances = $.map(data.result, function(instance, i) { 
         return instance['name'] || instance['slug']
       });
-      console.log("Instances: " + instances);
+      if (instances.length) { 
+        console.log("Instances: " + instances);
+      } else { 
+        console.log("No instances");
+      }
     })
     .fail(function(jqxhr, textstatus, error) { 
       if (jqxhr['status'] == 404) { 
