@@ -2,7 +2,6 @@
 ---
 (function($) {
 
-
   function instance_url(instance_name) { 
     return '{{ site.popit_server_protocol }}://' + instance_name + '.{{ site.popit_server }}';
   }
@@ -92,7 +91,8 @@
   }
 
   function buildUserInstanceList() {
-    var instancesUrl = 'http://popit.staging.mysociety.org/instances.json';
+    var instancesUrl = '{{ site.popit_server_protocol }}://{{ site.popit_server }}/instances.json';
+    
     $.getJSON(instancesUrl + '?callback=?', function(data) {
       var instances = $.map(data.result, function(instance, i) { 
         return instance['name'] || instance['slug']
