@@ -95,11 +95,17 @@
     var instancesUrl = '{{ site.popit_server_protocol }}://{{ site.popit_server }}/instances.json';
     
     $.getJSON(instancesUrl + '?callback=?', function(data) {
-      var instances = $.map(data.result, function(instance, i) { 
-        return instance['name'] || instance['slug']
-      });
-      if (instances.length) { 
-        console.log("Instances: " + instances);
+      if (data.result.length) { 
+        $.map(data.result, function(instance, i) { 
+          $("#popit-submit-form select").append(
+            $("<option />", { 
+              value: instance['slug'], 
+              text:  instance['name'] || instance['slug'],
+            })
+          );
+        });
+        $('#popit-instance-list-placeholder').hide();
+        console.log("Instances: " + data.result);
       } else { 
         console.log("No instances");
       }
