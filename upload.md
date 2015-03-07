@@ -34,7 +34,9 @@ permalink: /upload/
         then enter its name below. If you don’t have one yet, you can 
         <a href="{{ site.popit_server_protocol }}://{{ site.popit_server }}/instances/new">create one</a>.</p>
       <form id="popit-submit-form">
-        <input id="input_instance" type="text" placeholder="PopIt name" name="instance" class="popit-name-form-field" required="required">
+        <span id="popit-instance-list-placeholder">... waiting on list of PopIt instances ...</span>
+        <select id="input_instance" name="instance" class="popit-name-form-field" required="required">
+        </select>
         <button type="submit" class="button button--secondary popit-upload-button">Upload to PopIt</button>
       </form>
 
