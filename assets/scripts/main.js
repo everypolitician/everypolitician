@@ -106,12 +106,14 @@
         $('#popit-instance-list-placeholder').hide();
         console.log("Instances: " + data.result);
       } else { 
-        console.log("No instances");
+        $('#popit-login-status').text("You do not have any PopIts"); // TODO text
+        $('#popit-submit-form').hide();
       }
     })
     .fail(function(jqxhr, textstatus, error) { 
       if (jqxhr['status'] == 404) { 
-        console.log("Not logged in");
+        $('#popit-login-status').text("You are not logged into PopIt"); // TODO text
+        $('#popit-submit-form').hide();
       } else { 
         console.log("Error: " + textstatus);
         console.log(jqxhr);
