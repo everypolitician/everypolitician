@@ -29,7 +29,7 @@ permalink: /upload/
       <p>If something went wrong, just <a href="/upload">reload this page</a> and try again.</p>
       <h2 class="tertiary-heading">Add to PopIt</h2>
       <p>We can also insert this data into a PopIt for you, if you’d like.</p>
-      <p>If you already have an empty PopIt instance, <b>make sure you’re 
+      <p id="popit-login-status">If you already have an empty PopIt instance, <b>make sure you’re 
         <a href="{{ site.popit_server_protocol }}://{{ site.popit_server }}/instances">logged in to it</a></b>,
         then enter its name below. If you don’t have one yet, you can 
         <a href="{{ site.popit_server_protocol }}://{{ site.popit_server }}/instances/new">create one</a>.</p>
