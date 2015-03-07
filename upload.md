@@ -6,20 +6,58 @@ permalink: /upload/
 <div class="container"> 
 
   <div class="standard-page-wrapper">
-    <h1>Add your data</h1>
 
-    <p>Upload a CSV file here and we’ll convert it to JSON:</p>
-
-    <div class="upload-area">
-      <form action="{{ site.csv_to_popolo_url }}" class="dropzone uploader" id="my-awesome-dropzone">
-        <p class="drag-and-drop">
-          Drag &amp; Drop
-        </p>
-        <div class="fallback">
-          <input name="csv" type="file" multiple />
-        </div>
+    <div id="add-your-data-area">
+      <h1>Add your data</h1>
+      <p>Upload a CSV file here and we’ll convert it to JSON:</p>
+      <div class="upload-area">
+        <form action="{{ site.csv_to_popolo_url }}" class="dropzone uploader" id="my-awesome-dropzone">
+          <p class="drag-and-drop">
+            Drag &amp; Drop
+          </p>
+          <div class="fallback">
+            <input name="csv" type="file" multiple />
+          </div>
+        </form>
+        <div class="preview-area dropzone-previews"></div>
+      </div>
+    </div>
+  
+    <div id="popit-submit-area">
+      <h1>Here’s your data</h1>
+      <p>In the box below you’ll find the Popolo format JSON we generated from your CSV.</p>        
+      <p>If something went wrong, just <a href="/upload">reload this page</a> and try again.</p>
+      <h2 class="tertiary-heading">Add to PopIt</h2>
+      <p>We can also insert this data into a PopIt for you, if you’d like.</p>
+      <p>If you already have an empty PopIt instance, <b>make sure you’re <a href="http://popit.mysociety.org/instances">logged in to it</a></b>,
+      then enter its name below. If you don’t have one yet, you can <a href="http://popit.mysociety.org/instances/new">create one</a></p>
+      <form id="popit-submit-form">
+        <input id="input_instance" type="text" placeholder="PopIt name" name="instance" class="popit-name-form-field" required="required">
+        <button type="submit" class="button button--secondary popit-upload-button">Upload to PopIt</button>
       </form>
-      <div class="preview-area dropzone-previews"></div>
+
+      <div id="popit-submit-errors"></div>
+
+      <div id="json-preview-area">
+        <pre></pre>
+      </div>
+
+    </div>
+
+    <div id="polling-area">
+      <h1>Uploading</h1>
+      <p>We’re uploading your data to 
+        <span class="polling_area_instance_name">PopIt</span> ...
+      </p>
+      <p>Status: <span id="polling_status">Waiting</span></p>
+    </div>
+
+    <div id="success-area">
+      <h1>Uploaded!</h1>
+      <p>We successfully imported 
+        <span id="success_person_count">your records</span>.
+      </p>
+      <p>You can now enjoy your PopIt: <span id="success_popit_address"></span></p>
     </div>
 
     <hr /><br />

@@ -25,14 +25,6 @@
     });
   }
 
-  function display_polling_message(msg) {
-    return $('#polling_status').html(msg)
-  }
-
-  function display_polling_error(msg) {
-    display_polling_message(msg);
-  }
-
   function poll_for_completion(url, delay) {
     $.ajax({
       type: 'GET',
@@ -45,15 +37,16 @@
         var counts = response.result['counts'];
         var site_url = url.replace(/\/api\/v.*/,'/');
         var count_txt = (counts['persons'] == 1) ? "one person" : (counts['persons'] + " people");
-        var message = "<h1>Uploaded!</h1><p>We successfully imported " + count_txt + ".</p>" + 
-           "<p>Now visit your PopIt at: <a href='" + site_url + "'>" + site_url + "</a></p>";
-        $(".preview-area").html(message);
+        $("#polling-area").hide();
+        $("#success_person_count").text(count_txt);
+        $("#success_popit_address").html("<a href='" + site_url + "'>" + site_url + "</a>");
+        $("#success-area").show();
       } else if (import_status == 'pending') {
-        display_polling_message("Still pending. Waiting another " + (delay/1000) + " seconds before checking again.");
+        $('#polling_status').text("Still pending. Waiting another " + (delay/1000) + " seconds before checking again.");
         setTimeout(function() { poll_for_completion(url, delay + 1000) }, delay);
       } else {
         var message = "<h1>Sorry</h1><p>The import failed in a way that we thought was impossible. Please let us know how you got here!"
-        $(".preview-area").html(message);
+        $("#polling-area").html(message);
       }
     })
     .fail(function(jsxhr, textStatus, error) {
@@ -77,22 +70,13 @@
       // TODO trap different types of error
       // 404 = no such instance
       // 401 = not yours (or not logged in)
+      // TODO move this out into the HTML too.
       var message = "<p class='warning'><b>Sorry!</b> " +
        "We can't upload to <a href='" + instance_url(instance) + "'>" + instance + "." + SERVER_NAME + "</a>. Please make sure that it definitely exists, and that you're currently logged in to it as an administrator. Then try again.</p>";
       displayJSON(json)
-      $("#popit-submit-form").append($(message).css({ 'background-color': 'yellow' }));
-      // console.log(xhr.getAllResponseHeaders());
-      // console.log("text: " + textStatus);
-      // console.log("ET: " + errorThrown);
+      $("#popit-submit-errors").html($(message).css({ 'background-color': 'yellow' }));
     });
   };
-
-  function polling_box(instance) {
-    return $("<h1>Uploading</h1>\
-        <p>We’re uploading your data to " + instance_url(instance) + " ...</p>\
-        <p>Status: <span id='polling_status'>Waiting</span></p>\
-    ");
-  }
 
   function whatsWrongWith(json) {
     if (!json.hasOwnProperty('error')) { return "We couldn‘t find any records in your CSV file. " }
@@ -111,52 +95,19 @@
   }
 
   function displayJSON(json) {
-    var json_preview = $('<div/>', {
-      'html': "<pre>" + JSON.stringify(json, null, 2) + "</pre>"
-    }).css({
-      'color': 'black',
-      'font-size': 'small',
-      'text-align': 'left'
-    });
-
-    var upload_form = $('<form id="popit-submit-form" />').append(
-      $("<h1>Here's your data</h1>\
-        <p>In the box below you’ll find the Popolo format JSON we generated from your CSV.</p>\
-        <p>If something went wrong, just <a href='/upload'>reload this page</a> and try again.\
-        <h2 class='tertiary-heading'>Add to PopIt</h2>\
-        <p>We can also insert this data into a PopIt for you, if you’d like.</p>\
-        <p>If you already have an empty PopIt instance, <b>make sure you’re <a href='http://" + SERVER_NAME + "/instances'>logged in to it</a></b>,\
-        then enter its name below. If you don’t have one yet, you can <a href='http://" + SERVER_NAME + "/instances/new'>create one</a>.\
-      ")
-    ).append(
-      $('<input />', {
-        id: 'input_instance',
-        type: 'text',
-        placeholder: 'PopIt name',
-        name: 'instance',
-        class: 'popit-name-form-field',
-        required: true
-      })
-    ).append(
-      $('<button />', {
-        'type': 'submit',
-        'text': "Upload to PopIt",
-        'class': 'button button--secondary popit-upload-button'
-      })
-    ).submit(function(e) {
+    $("#popit-submit-form").submit(function(e) {
       var instance = popit_name_from( $("#input_instance").val() );
-      if (instance == '') {
-        $("#input_instance").css('border-color', 'red');
-      } else {
-        sendToPopit(json, instance);
-        $(".preview-area").html(polling_box(instance));
-      }
+      sendToPopit(json, instance);
+      $(".polling_area_instance_name").text(instance);
+      $("#popit-submit-area").hide();
+      $("#polling-area").show();
       e.preventDefault();
     });
-    $("#my-awesome-dropzone").hide();
-    $(".preview-area").text('').append(upload_form).append(json_preview);
+    $("#polling-area").hide();
+    $("#json-preview-area pre").html(JSON.stringify(json, null, 2));
+    $("#popit-submit-area").show();
+    $("#add-your-data-area").hide();
   };
-
 
   Dropzone.options.myAwesomeDropzone = {
     dictDefaultMessage: "Drag and drop your .CSV file here, or click to browse",
