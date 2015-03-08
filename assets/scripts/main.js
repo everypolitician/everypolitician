@@ -7,8 +7,12 @@
     return '{{ site.popit_server_protocol }}://' + instance_name + '.{{ site.popit_server }}';
   }
 
+  function api_endpoint(instance_name) { 
+    return instance_url(instance_name) + '/api/v0.1';
+  }
+
   function import_endpoint(instance_name) { 
-    return instance_url(instance_name) + '/api/v0.1/imports';
+    return api_endpoint(instance_name) + '/imports';
   }
 
   function popitImport(instanceSlug, popoloJson) {
@@ -57,6 +61,26 @@
       $(".preview-area").html(message);
     });
   }
+
+  function repopulatePopit(json, instance) { 
+    var endpoint = api_endpoint(instance) 
+    console.log(endpoint);
+    return $.ajax({
+      type: 'DELETE',
+      url: endpoint,
+      // Make sure the Cookie header gets sent
+      xhrFields: {
+        withCredentials: true
+      }
+    })
+    .fail(function(xhr, textStatus, errorThrown) {
+      console.log("Deletion failed");
+    })
+    .done(function(response) { 
+      console.log("Deletion succeeded ... now submitting");
+      sendToPopit(json, instance);
+    })
+  };
 
   function sendToPopit(json, instance) {
     popitImport(instance, json)
@@ -135,7 +159,7 @@
   function displayJSON(json) {
     $("#popit-submit-form").submit(function(e) {
       var instance = popit_name_from( $("#input_instance").val() );
-      sendToPopit(json, instance);
+      repopulatePopit(json, instance);
       $(".polling_area_instance_name").text(instance);
       $("#popit-submit-area").hide();
       $("#polling-area").show();
