@@ -109,7 +109,8 @@
         $('#popit-submit-form').show();
         console.log("Instances: " + data.result);
       } else { 
-        $('#popit-login-status ol li:first-child').hide();
+        // PopIt Account, but no instances
+        $('#popit-login-status ol#no-popits li:first-child').hide();
         $('#popit-submit-form').hide();
       }
     })
@@ -121,6 +122,13 @@
         console.log(jqxhr);
       }
     });
+  }
+
+  function offerFindMyPopits() {
+    $(".find-my-popits").on("click", function() { 
+      console.log("rebuildin list of popits");
+      buildUserInstanceList();
+    })
   }
 
   function displayJSON(json) {
@@ -136,6 +144,7 @@
     $("#json-preview-area pre").html(JSON.stringify(json, null, 2));
     $("#popit-submit-area").show();
     $("#add-your-data-area").hide();
+    offerFindMyPopits();
   };
 
   Dropzone.options.myAwesomeDropzone = {
