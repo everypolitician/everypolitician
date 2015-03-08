@@ -79,7 +79,7 @@
     if (!json.hasOwnProperty('error')) { return "We couldn‘t find any records in your CSV file. " }
     if (json.error['type'] == 'CSV::MalformedCSVError') { return "Your CSV file seems to be malformed." }
     if (json.error['type'] == 'EOFError') { return "Your CSV file seems to be empty." }
-    return "We have an unexpected error: " + JSON.stringify(json.error);
+    return "There was an unexpected error: " + JSON.stringify(json.error);
   }
 
   function warnOfNoPersons(json) { 
@@ -104,17 +104,19 @@
             })
           );
         });
+        $('#popit-login-status #no-popits').hide();
+        $('#popit-login-status #has-popits').show();
         $('#popit-instance-list-placeholder').hide();
+        $('#popit-submit-form').show();
         console.log("Instances: " + data.result);
       } else { 
-        $('#popit-login-status').text("You do not have any PopIts"); // TODO text
+        $('#popit-login-status ol li:first-child').hide();
         $('#popit-submit-form').hide();
       }
     })
     .fail(function(jqxhr, textstatus, error) { 
       if (jqxhr['status'] == 404) { 
-        $('#popit-login-status').text("You are not logged into PopIt"); // TODO text
-        $('#popit-submit-form').hide();
+        // Not logged in — default text remains dispayed
       } else { 
         console.log("Error: " + textstatus);
         console.log(jqxhr);

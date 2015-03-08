@@ -297,6 +297,10 @@ tfoot {
     margin: 0 auto;
 }
 
+.find-my-popits { 
+  float: right;
+}
+
 #add-your-data-area {
 }
 
@@ -318,3 +322,10 @@ tfoot {
   text-align: left;
 }
 
+#popit-submit-form {
+  display: none;
+}
+
+#popit-login-status #has-popits {
+  display: none;
+}
