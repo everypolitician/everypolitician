@@ -108,7 +108,6 @@
         $('#popit-login-status #has-popits').show();
         $('#popit-instance-list-placeholder').hide();
         $('#popit-submit-form').show();
-        console.log("Instances: " + data.result);
       } else { 
         // PopIt Account, but no instances
         $('#popit-login-status ol#no-popits li:first-child').hide();
@@ -127,7 +126,6 @@
 
   function offerFindMyPopits() {
     $(".find-my-popits").on("click", function() { 
-      console.log("rebuildin list of popits");
       buildUserInstanceList();
     })
   }

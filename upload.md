@@ -22,7 +22,7 @@ permalink: /upload/
     </div>
 
     <div id="popit-submit-area">
-      <h1>Here’s your data as JSON</h1>
+      <h1>Here’s your JSON</h1>
       <p>In the box below you’ll find the Popolo format JSON we generated from your CSV.</p>        
       <p>If something went wrong, just <a href="/upload">reload this page</a> and try again.</p>
       <h2 class="tertiary-heading">Add to PopIt</h2>
