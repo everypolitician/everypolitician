@@ -1,4 +1,5 @@
 ---
+# Processed to get access to _config.yaml variables
 ---
 (function($) {
 
