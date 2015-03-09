@@ -123,12 +123,6 @@
     });
   }
 
-  function offerFindMyPopits() {
-    $(".find-my-popits").on("click", function() { 
-      buildUserInstanceList();
-    })
-  }
-
   function displayJSON(json) {
     $("#popit-submit-form").submit(function(e) {
       var instance = popit_name_from( $("#input_instance").val() );
@@ -142,7 +136,6 @@
     $("#json-preview-area pre").html(JSON.stringify(json, null, 2));
     $("#popit-submit-area").show();
     $("#add-your-data-area").hide();
-    offerFindMyPopits();
   };
 
   Dropzone.options.myAwesomeDropzone = {
