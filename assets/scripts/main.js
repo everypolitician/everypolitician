@@ -131,6 +131,7 @@
       $(".polling_area_instance_name").text(instance);
       $("#popit-submit-area").hide();
       $("#polling-area").show();
+      $('html, body').animate({scrollTop:$('#polling-area').offset().top - 20}, 'slow');
       e.preventDefault();
     });
     $("#polling-area").hide();
