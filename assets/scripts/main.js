@@ -1,13 +1,15 @@
+---
+# Processed to get access to _config.yaml variables
+---
 (function($) {
 
-  var SERVER_NAME = $('meta[name="popit-server"]').attr('content');
+
+  function instance_url(instance_name) { 
+    return '{{ site.popit_server_protocol }}://' + instance_name + '.{{ site.popit_server }}';
+  }
 
   function import_endpoint(instance_name) { 
-    var protocol = 'http';
-    if (SERVER_NAME === 'popit.mysociety.org') {
-      protocol = 'https';
-    }
-    return protocol + '://' + instance_name + '.' + SERVER_NAME + '/api/v0.1/imports'
+    return instance_url(instance_name) + '/api/v0.1/imports';
   }
 
   function popitImport(instanceSlug, popoloJson) {
@@ -57,10 +59,6 @@
     });
   }
 
-  function instance_url(name) { 
-    return 'http://' + name + '.' + SERVER_NAME
-  }
-
   function sendToPopit(json, instance) {
     popitImport(instance, json)
     .done(function(response) {
@@ -72,7 +70,7 @@
       // 401 = not yours (or not logged in)
       // TODO move this out into the HTML too.
       var message = "<p class='warning'><b>Sorry!</b> " +
-       "We can't upload to <a href='" + instance_url(instance) + "'>" + instance + "." + SERVER_NAME + "</a>. Please make sure that it definitely exists, and that you're currently logged in to it as an administrator. Then try again.</p>";
+       "We can't upload to <a href='" + instance_url(instance) + "'>" + instance_url(instance) + "</a>. Please make sure that it definitely exists, and that you're currently logged in to it as an administrator. Then try again.</p>";
       displayJSON(json)
       $("#popit-submit-errors").html($(message).css({ 'background-color': 'yellow' }));
     });
