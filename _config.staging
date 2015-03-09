@@ -1,0 +1,18 @@
+# Site settings
+title: OpenPoliticians
+email: tony@mysociety.org
+description: > # Help build a public list of every politician in the world
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://openpoliticians.org/" # the base hostname & protocol for your site
+twitter_username: jekyllrb
+github_username:  jekyll
+permalink: pretty
+# Build settings
+markdown: kramdown
+sass:
+    style: :compressed
+    sass_dir: _sass
+
+csv_to_popolo_url: https://enigmatic-mesa-3061.herokuapp.com/convert
+popit_server: popit.staging.mysociety.org
+popit_server_protocol: http
