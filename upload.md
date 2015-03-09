@@ -38,9 +38,8 @@ permalink: /upload/
             a new PopIt instance</a>: give it a name that‘s relevant to your data.</li>
           <li>PopIt will invite you to populate your instance, but ignore
           that: we‘re going to populate it from here.</li>
-          <li>So come back to the this page, and click the button to
-          “Find Your PopIts”.</li>
-          <li>When it‘s all done (watch for the “Uploaded!” message), you
+          <li>So come back to this page, and select your new PopIt (you may need to reload to see it).</li>
+          <li>When it‘s finished (watch for the “Uploaded!” message), you
           can go back to your new PopIt, and add a description. Click on ‘people’
           and ‘organizations’ in the top bar to see how your data has displayed,
           and make any manual edits you want.</li>
@@ -50,8 +49,7 @@ permalink: /upload/
           <li><b>WARNING!</b> Any content that‘s already in your PopIt will
             be completely destroyed first. If you‘re not sure you want this,
             try <a href="{{ site.popit_server_protocol }}://{{ site.popit_server }}/instances/new">creating 
-              a new PopIt instance</a> to play with first. (Then click
-            “Find Your PopIts” to reload with that new one included.)</li>
+              a new PopIt instance</a> to play with first.</li>
           <li>When it‘s all done (watch for the “Uploaded!” message), you
           can go back to your new PopIt, and add a description. Click on ‘people’
           and ‘organizations’ in the top bar to see how your data has displayed,
@@ -59,7 +57,6 @@ permalink: /upload/
         </ol>
       </div>
 
-      <button class="button button--quarternary find-my-popits">Find Your Popits</button>
       <br clear="all" />
       <form id="popit-submit-form">
         <select id="input_instance" name="instance" class="popit-name-form-field" required="required">
