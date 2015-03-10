@@ -86,6 +86,7 @@ permalink: /upload/
         <span id="success_person_count">your records</span>.
       </p>
       <p>You can now enjoy your PopIt: <span id="success_popit_address"></span></p>
+      <div id="popit-demo-area"></div>
     </div>
 
     <hr /><br />
