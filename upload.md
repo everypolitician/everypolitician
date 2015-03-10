@@ -85,8 +85,12 @@ permalink: /upload/
       <p>We successfully imported 
         <span id="success_person_count">your records</span>.
       </p>
+      <div id="popit-demo-area">
+        <button type="submit" class="button button--primary">Use my Popit&rsquo;s data!</button>
+        <ul>
+        </ul>
+      </div>
       <p>You can now enjoy your PopIt: <span id="success_popit_address"></span></p>
-      <div id="popit-demo-area"></div>
     </div>
 
     <hr /><br />

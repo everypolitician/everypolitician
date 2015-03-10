@@ -30,6 +30,20 @@
     });
   }
 
+  function show_people(people, index) {
+    if (0 != people.length ) {
+      console.log("populating ul");
+      var $ul = $('#popit-demo-area ul');
+      $.each(people, function(){
+          $ul.append("<li><span>&nbsp;</span><a href='" + this.html_url + "'>" + this.name + "</a></li>")
+      });
+      $ul.liScroll();
+      console.log("fired scroller");
+    } else {
+      // no people; do nothing
+    }
+  }
+
   function poll_for_completion(url, instance, delay) {
     $.ajax({
       type: 'GET',
@@ -46,6 +60,21 @@
         $("#success_person_count").text(count_txt);
         $("#success_popit_address").html("<a href='" + site_url + "'>" + site_url + "</a>");
         $("#success-area").show();
+        
+        $('#popit-demo-area button').on('click',function(){
+          $.ajax({
+            type: 'GET',
+            url: api_endpoint(instance)+ "/persons/"
+            // xhrFields: { withCredentials: true }
+          })
+          .done(function(response) {
+            
+            console.log("Response:");
+            console.log(response);
+            $('#popit-demo-area button').hide();
+            show_people(response.result, 0);
+          });
+        });
       } else if (import_status == 'pending') {
         $('#polling_status').text("Still pending. Waiting another " + (delay/1000) + " seconds before checking again.");
         setTimeout(function() { poll_for_completion(url, instance, delay + 1000) }, delay);
