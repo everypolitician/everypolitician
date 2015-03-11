@@ -3,38 +3,43 @@ layout: default
 title: Upload
 permalink: /upload/
 ---
-<div class="container"> 
+<div class="container">
 
-  <div class="standard-page-wrapper">
 
-    <div id="add-your-data-area">
-      <h1>Add your data</h1>
-      <p>Upload a CSV file here and we’ll convert it to JSON:</p>
-      <div class="upload-area">
-        <form action="{{ site.csv_to_popolo_url }}" class="dropzone uploader" id="my-awesome-dropzone">
-          <p class="drag-and-drop"> Drag &amp; Drop </p>
-          <div class="fallback">
-            <input name="csv" type="file" multiple />
-          </div>
-        </form>
-        <div class="preview-area dropzone-previews"></div>
+    <div id="add-your-data-area" class="add-your-data-area">
+      <div class="standard-page-wrapper">
+        <h1>Add your data</h1>
+        <p>Upload a CSV file here and we’ll convert it to JSON:</p>
+        <div class="upload-area">
+          <form action="{{ site.csv_to_popolo_url }}" class="dropzone uploader" id="my-awesome-dropzone">
+            <p class="drag-and-drop"> Drag &amp; Drop </p>
+            <div class="fallback">
+              <input name="csv" type="file" multiple />
+            </div>
+          </form>
+          <div class="preview-area dropzone-previews"></div>
+        </div>
       </div>
-    </div>
 
-    <div id="popit-submit-area">
+      <div id="popit-submit-errors"></div>
+      </div>
+
+    <div id="popit-submit-area" class="popit-submit-area">
       <h1>Here’s your JSON</h1>
-      <p>In the box below you’ll find the Popolo format JSON we generated from your CSV.</p>        
+      <div class="first-column">
+
+      <p>In the box below you’ll find the Popolo format JSON we generated from your CSV.</p>
       <p>If something went wrong, just <a href="/upload">reload this page</a> and try again.</p>
       <h2 class="tertiary-heading">Add to PopIt</h2>
-      <p>Adding this data to PopIt will put it into a good-looking, public-facing website like 
-      <a href="https://greekparliament.popit.mysociety.org/">this</a>.</p> 
+      <p>Adding this data to PopIt will put it into a good-looking, public-facing website like
+      <a href="https://greekparliament.popit.mysociety.org/">this</a>.</p>
 
       <div id="popit-login-status">
         <p>Here‘s how:</p>
         <ol id="no-popits">
-          <li><a href="{{ site.popit_server_protocol }}://{{ site.popit_server }}/login">Log in 
+          <li><a href="{{ site.popit_server_protocol }}://{{ site.popit_server }}/login">Log in
             or Register with PopIt.</a></li>
-          <li><a href="{{ site.popit_server_protocol }}://{{ site.popit_server }}/instances/new">Create 
+          <li><a href="{{ site.popit_server_protocol }}://{{ site.popit_server }}/instances/new">Create
             a new PopIt instance</a>: give it a name that‘s relevant to your data.</li>
           <li>PopIt will invite you to populate your instance, but ignore
           that: we‘re going to populate it from here.</li>
@@ -48,7 +53,7 @@ permalink: /upload/
           <li>Select your PopIt from the list below, and click the “Upload” button.</li>
           <li><b>WARNING!</b> Any content that‘s already in your PopIt will
             be completely destroyed first. If you‘re not sure you want this,
-            try <a href="{{ site.popit_server_protocol }}://{{ site.popit_server }}/instances/new">creating 
+            try <a href="{{ site.popit_server_protocol }}://{{ site.popit_server }}/instances/new">creating
               a new PopIt instance</a> to play with first.</li>
           <li>When it‘s all done (watch for the “Uploaded!” message), you
           can go back to your new PopIt, and add a description. Click on ‘people’
@@ -58,23 +63,25 @@ permalink: /upload/
       </div>
 
       <br clear="all" />
-      <form id="popit-submit-form">
+      <form id="popit-submit-form" class="popit-submit-form">
+        <label for="input_instance">Choose a PopIt</label>
         <select id="input_instance" name="instance" class="popit-name-form-field" required="required">
         </select>
-        <button type="submit" class="button button--secondary popit-upload-button">Upload to PopIt</button>
+        <button type="submit" class="button button--secondary">Upload to PopIt</button>
       </form>
+      </div><!--
 
-      <div id="popit-submit-errors"></div>
-
-      <div id="json-preview-area">
-        <pre> </pre>
+      --><div class="second-column">
+        <div id="json-preview-area">
+          <pre> </pre>
+        </div>
       </div>
-
     </div>
 
+  <div class="standard-page-wrapper">
     <div id="polling-area">
       <h1>Uploading</h1>
-      <p>We’re uploading your data to 
+      <p>We’re uploading your data to
         <span class="polling_area_instance_name">PopIt</span> ...
       </p>
       <p>Status: <span id="polling_status">Waiting</span></p>
@@ -82,7 +89,7 @@ permalink: /upload/
 
     <div id="success-area">
       <h1>Uploaded!</h1>
-      <p>We successfully imported 
+      <p>We successfully imported
         <span id="success_person_count">your records</span>.
       </p>
       <p>You can now enjoy your PopIt: <span id="success_popit_address"></span></p>

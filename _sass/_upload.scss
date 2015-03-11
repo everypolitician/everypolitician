@@ -3,6 +3,13 @@
     text-align: center;
 }
 
+.add-your-data-area {
+    text-align: center;
+    .standard-page-wrapper {
+        padding-bottom: 0;
+    }
+}
+
 .upload-area {
     position: relative;
 }
@@ -78,4 +85,42 @@ input.popit-name-form-field {
     @include vendor-prefix(border-top-right-radius, 0);
     @include vendor-prefix(border-bottom-right-radius, 0);
     margin-bottom: 1em;
+}
+
+.popit-submit-area {
+    margin-top: 3em;
+    @extend .layout-equal-columns;
+    h1 {
+        text-align: center;
+        margin-bottom: 0.75em;
+    }
+}
+
+.popit-submit-form {
+    background-color: $colour_off_white;
+    padding: 1em;
+    @include vendor-prefix(border-radius, $border-radius);
+    label {
+        display: block;
+        margin-bottom: 0.5em;
+    }
+    select {
+        -webkit-appearance: none;
+           -moz-appearance: none;
+                appearance: none;
+        padding: 0.7em 1em;
+        border: 1px solid $colour_borders;
+        background-color: #fff;
+        position: relative;
+        min-width: 20em;
+        background-image: url('../assets/img/arrow-pointing-down.png');
+        background-repeat: no-repeat;
+        background-position: 97% 50%;
+    }
+}
+
+
+.json-preview-area {
+    max-height: 55em;
+    overflow-y: scroll;
 }
