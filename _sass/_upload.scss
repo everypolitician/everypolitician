@@ -124,3 +124,34 @@ input.popit-name-form-field {
     max-height: 55em;
     overflow-y: scroll;
 }
+
+.status-message {
+    display: block;
+    background-image: url('../assets/img/ajax-loader.gif');
+    background-position: 1em 50%;
+    background-repeat: no-repeat;
+    background-color: #f4f4f4;
+    padding: 1em 1.5em 1em 3em;
+    @include vendor-prefix(border-radius, $border_radius);
+}
+
+.success-area {
+    text-align: center;
+}
+
+.success-box {
+    background-color: #f4f4f4;
+    padding: 1.5em 1.5em 1em;
+    @include vendor-prefix(border-radius, $border_radius);
+    margin-bottom: 2em;
+    margin-top: 2em;
+    .button {
+        display: block;
+        width: auto;
+        margin: 0.5em auto 0;
+    }
+}
+
+.success-message {
+    font-size: 1.3em;
+}

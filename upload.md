@@ -84,18 +84,20 @@ permalink: /upload/
       <p>We’re uploading your data to
         <span class="polling_area_instance_name">PopIt</span> ...
       </p>
-      <p>Status: <span id="polling_status">Waiting</span></p>
+      <p class="status-message"><strong>Status</strong> <span id="polling_status">Waiting</span></p>
     </div>
 
-    <div id="success-area">
-      <h1>Uploaded!</h1>
-      <p>We successfully imported
-        <span id="success_person_count">your records</span>.
+    <div id="success-area" class="success-area">
+      <h1>Upload complete</h1>
+      <div class="success-box">
+      <p class="success-message"><strong>We successfully imported
+        <span id="success_person_count">your records</span>
+        </strong>
       </p>
-      <p>You can now enjoy your PopIt: <span id="success_popit_address"></span></p>
+      <p><span id="success_popit_address"></span></p>
+      </div>
     </div>
 
-    <hr /><br />
 
     <p>If you can generate a CSV file with information about the members
     of your legislature, then we can convert it to JSON for you.

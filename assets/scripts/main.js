@@ -44,7 +44,7 @@
         var count_txt = (counts['persons'] == 1) ? "one person" : (counts['persons'] + " people");
         $("#polling-area").hide();
         $("#success_person_count").text(count_txt);
-        $("#success_popit_address").html("<a href='" + site_url + "'>" + site_url + "</a>");
+        $("#success_popit_address").html("<a class='button' href='" + site_url + "'>Go to your PopIt &rarr;</a>");
         $("#success-area").show();
       } else if (import_status == 'pending') {
         $('#polling_status').text("Still pending. Waiting another " + (delay/1000) + " seconds before checking again.");
