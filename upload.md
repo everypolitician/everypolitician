@@ -76,7 +76,7 @@ permalink: /upload/
 
       --><div class="second-column">
         <div id="json-preview-area">
-          <pre> </pre>
+          <pre><code class="json"></code></pre>
         </div>
       </div>
     </div>
