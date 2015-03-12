@@ -159,7 +159,9 @@
       e.preventDefault();
     });
     $("#polling-area").hide();
-    $("#json-preview-area pre").html(JSON.stringify(json, null, 2));
+    $("#json-preview-area pre code").html(JSON.stringify(json, null, 2)).each(function(i, block) {
+      hljs.highlightBlock(block);
+    });
     $("#popit-submit-area").show();
     $("#add-your-data-area").hide();
   };
