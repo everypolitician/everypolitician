@@ -30,7 +30,7 @@
     });
   }
 
-  function poll_for_completion(url, delay) {
+  function poll_for_completion(url, instance, delay) {
     $.ajax({
       type: 'GET',
       url: url,
@@ -40,7 +40,7 @@
       var import_status = response.result['status'];
       if (import_status == 'complete') {
         var counts = response.result['counts'];
-        var site_url = url.replace(/\/api\/v.*/,'/');
+        var site_url = instance_url(instance);
         var count_txt = (counts['persons'] == 1) ? "one person" : (counts['persons'] + " people");
         $("#polling-area").hide();
         $("#success_person_count").text(count_txt);
@@ -48,7 +48,7 @@
         $("#success-area").show();
       } else if (import_status == 'pending') {
         $('#polling_status').text("Still pending. Waiting another " + (delay/1000) + " seconds before checking again.");
-        setTimeout(function() { poll_for_completion(url, delay + 1000) }, delay);
+        setTimeout(function() { poll_for_completion(url, instance, delay + 1000) }, delay);
       } else {
         var message = "<h1>Sorry</h1><p>The import failed in a way that we thought was impossible. Please let us know how you got here!"
         $("#polling-area").html(message);
@@ -85,7 +85,7 @@
   function sendToPopit(json, instance) {
     popitImport(instance, json)
     .done(function(response) {
-      poll_for_completion(response.result['url'], 2000);
+      poll_for_completion(response.result['url'], instance, 2000);
     })
     .fail(function(xhr, textStatus, errorThrown) {
       // TODO trap different types of error
