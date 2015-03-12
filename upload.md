@@ -25,11 +25,11 @@ permalink: /upload/
       </div>
 
     <div id="popit-submit-area" class="popit-submit-area">
-      <h1>Here’s your JSON</h1>
+      <h1>Here’s your data as JSON</h1>
       <div class="first-column">
 
-      <p>In the box below you’ll find the Popolo format JSON we generated from your CSV.</p>
-      <p>If something went wrong, just <a href="/upload">reload this page</a> and try again.</p>
+      <p>In the box you’ll find the Popolo format JSON we generated from your CSV.</p>
+      <p>If something looks wrong, just <a href="/upload">reload this page</a> and try again.</p>
       <h2 class="tertiary-heading">Add to PopIt</h2>
       <p>Adding this data to PopIt will put it into a good-looking, public-facing website like
       <a href="https://greekparliament.popit.mysociety.org/">this</a>.</p>
@@ -48,6 +48,9 @@ permalink: /upload/
           can go back to your new PopIt, and add a description. Click on ‘people’
           and ‘organizations’ in the top bar to see how your data has displayed,
           and make any manual edits you want.</li>
+          <li>If you realise that something wasn‘t quite right with your data,
+          simply come back here and repeat the whole process over with your fixed
+          CSV file.</li>
         </ol>
         <ol id="has-popits">
           <li>Select your PopIt from the list below, and click the “Upload” button.</li>
