@@ -187,7 +187,8 @@ permalink: /upload/
     results look like. Once you get something you’re happy
     with, then you can add it to <a href="http://popit.poplus.org/">PopIt</a>.</p>
 
-    <p><a href="mailto:team@openpoliticians.org">Let us know</a> how you get on—or if we can help.</p>
+    <p><a href="mailto:team@everypolitician.org">Let us know</a> 
+    how you get on—or if we can help.</p>
 
   </div>
 </div>
