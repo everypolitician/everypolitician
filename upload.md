@@ -185,7 +185,8 @@ permalink: /upload/
     <p>Anything not in this list will probably just be ignored—but you
     can play around with this tool as much as you want to see what the
     results look like. Once you get something you’re happy
-    with, then you can add it to <a href="http://popit.poplus.org/">PopIt</a>.</p>
+    with, then we‘ll help you add it to <a 
+    href="http://popit.poplus.org/">PopIt</a>.</p>
 
     <p><a href="mailto:team@everypolitician.org">Let us know</a> 
     how you get on—or if we can help.</p>
