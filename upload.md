@@ -138,8 +138,8 @@ permalink: /upload/
     <ul>
       <li><code>id</code>: A unique id field for each person, and
       <code>party_id</code> for each party (if you don’t supply these, we’ll
-      create them for you, but they will be different each time you run this,
-      which may cause problems later).</li>
+      create them for you, but if your source data has them, it would be
+      better for you to use those.)</li>
       <li><code>email</code>: An email address for each person and/or</li>
       <li><code>twitter</code>: their Twitter handle.</li>
       <li><code>image</code>: A URL for an image of the person.</li>
@@ -178,12 +178,18 @@ permalink: /upload/
       <li><code>fax</code></li>
     </ul>
 
+    <p>(If you‘re unsure what any of these mean, the <a 
+    href="http://www.popoloproject.com/specs/person.html">Popolo
+    specification</a> has lots more details.)</p>
+
     <p>Anything not in this list will probably just be ignored—but you
     can play around with this tool as much as you want to see what the
     results look like. Once you get something you’re happy
-    with, then you can add it to <a href="http://popit.poplus.org/">PopIt</a>.</p>
+    with, then we‘ll help you add it to <a 
+    href="http://popit.poplus.org/">PopIt</a>.</p>
 
-    <p><a href="mailto:team@openpoliticians.org">Let us know</a> how you get on—or if we can help.</p>
+    <p><a href="mailto:team@everypolitician.org">Let us know</a> 
+    how you get on—or if we can help.</p>
 
   </div>
 </div>
