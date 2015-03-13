@@ -178,6 +178,10 @@ permalink: /upload/
       <li><code>fax</code></li>
     </ul>
 
+    <p>(If you‘re unsure what any of these mean, the <a 
+    href="http://www.popoloproject.com/specs/person.html">Popolo
+    specification</a> has lots more details.)</p>
+
     <p>Anything not in this list will probably just be ignored—but you
     can play around with this tool as much as you want to see what the
     results look like. Once you get something you’re happy
