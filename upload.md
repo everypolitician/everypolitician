@@ -138,8 +138,8 @@ permalink: /upload/
     <ul>
       <li><code>id</code>: A unique id field for each person, and
       <code>party_id</code> for each party (if you don’t supply these, we’ll
-      create them for you, but they will be different each time you run this,
-      which may cause problems later).</li>
+      create them for you, but if your source data has them, it would be
+      better for you to use those.)</li>
       <li><code>email</code>: An email address for each person and/or</li>
       <li><code>twitter</code>: their Twitter handle.</li>
       <li><code>image</code>: A URL for an image of the person.</li>
