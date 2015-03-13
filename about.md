@@ -72,7 +72,7 @@ more and more tools will become possible.
 
 ## Find out more
 
-OpenPoliticians is a [Poplus](http://www.poplus.org/) project. Drop by
+EveryPolitician is a [Poplus](http://www.poplus.org/) project. Drop by
 our [friendly mailing list](https://groups.google.com/forum/#!forum/poplus) 
 to ask questions or just to say hello.
 
