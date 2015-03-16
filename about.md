@@ -4,7 +4,8 @@ title: About
 permalink: /about/
 ---
 
-We’re building a publicly available, open list of all the world’s politicians, in a standardised format. 
+Help build a publicly available, distributed, open list of all the
+world’s politicians, in a standardised format. 
 
 ## Why? 
 
@@ -22,7 +23,7 @@ new data standard for politicians’ details.
 ## How do I get involved?
 
 If you‘ve already published Popolo format data for your country’s
-politicians (or know of such data for a country not on our map),
+politicians (or know of such data for a country not on [the map](/#map)),
 let us know, and we’ll add it to the growing list.
 
 If you can create a CSV file (for example, by exporting it from a
@@ -67,7 +68,7 @@ details, but they can also be used in bigger projects, such as making it
 easy to [track what those politicians say](http://sayit.poplus.org/), or
 for citizens to [send public messages to them](http://writeit.poplus.org/). 
 
-As we collect more data from more countries, all in the same format,
+As data becomes available from more countries, all in the same format,
 more and more tools will become possible.
 
 ## Find out more
