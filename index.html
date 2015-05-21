@@ -1,0 +1,103 @@
+---
+layout: default
+---
+  <div class="hero hero--homepage hero--blue">
+      <div class="container">
+        <div id="js-welcome-message">
+          <h1>Help build a public list of every politician in the world!</h1>
+          <ol class="steps-list">
+            <li class="step one">Know where to find a list of politicians for your country?</li>
+            <li class="step two">Convert it to the Popolo JSON standard</li>
+            <li class="step three">Now anyone can use it to build web tools</li>
+          </ol>
+          <p class="subtitle"><a href="{{ site.baseurl }}/about">Read more about the project &rarr;</a></p>
+
+        </div>
+
+      </div>
+  </div>
+
+  <div class="homepage-map">
+      <div class="container">
+          <h2 id="map">Our progress</h2>
+          <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['geochart']}]}"></script>
+     <div id="regions_div" class="map-regions" style="width: 100%; height: 500px;"></div>
+      </div>
+  </div>
+  <script>
+        google.setOnLoadCallback(drawRegionsMap);
+
+    function drawRegionsMap() {
+
+      var data = google.visualization.arrayToDataTable([
+        ['Country', 'Level', {role: 'tooltip', 'p': {html: true}}],
+        ['Andorra', 5, "<a href='http://data.everypolitician.org/andorra/term_table.html'>EveryPolitician</a>"],
+        ['Australia', 5, "<a href='http://data.everypolitician.org/australia/term_table.html'>EveryPolitician</a>"],
+        ['Bangladesh', 5, "<a href='http://data.everypolitician.org/bangladesh/term_table.html'>EveryPolitician</a>"],
+        ['Botswana', 5, "<a href='http://data.everypolitician.org/botswana/term_table.html'>EveryPolitician</a>"],
+        ['Brazil', 5, "<a href='http://data.everypolitician.org/brazil/term_table.html'>EveryPolitician</a>"],
+        ['Burundi', 5, "<a href='http://data.everypolitician.org/burundi/term_table.html'>EveryPolitician</a>"],
+        ['Canada', 5, "<a href='http://data.everypolitician.org/canada/term_table.html'>EveryPolitician</a>"],
+        ['Chile', 5, "<a href='http://data.everypolitician.org/chile/term_table.html'>EveryPolitician</a>"],
+        ['Denmark', 5, "<a href='http://data.everypolitician.org/denmark/term_table.html'>EveryPolitician</a>"],
+        ['Estonia', 5, "<a href='http://data.everypolitician.org/estonia/term_table.html'>EveryPolitician</a>"],
+        ['Finland', 5, "<a href='http://data.everypolitician.org/finland/term_table.html'>EveryPolitician</a>"],
+        ['Germany', 5, "<a href='http://data.everypolitician.org/germany/term_table.html'>EveryPolitician</a>"],
+        ['Greenland', 5, "<a href='http://data.everypolitician.org/greenland/term_table.html'>EveryPolitician</a>"],
+        ['Iceland', 5, "<a href='http://data.everypolitician.org/iceland/term_table.html'>EveryPolitician</a>"],
+        ['Iran', 5, "<a href='http://data.everypolitician.org/iran/term_table.html'>EveryPolitician</a>"],
+        ['Italy', 5, "<a href='http://data.everypolitician.org/italy/term_table.html'>EveryPolitician</a>"],
+        ['Kazakhstan', 5, "<a href='http://data.everypolitician.org/kazakhstan/term_table.html'>EveryPolitician</a>"],
+        ['Kosovo', 5, "<a href='http://data.everypolitician.org/kosovo/term_table.html'>EveryPolitician</a>"],
+        ['Mongolia', 5, "<a href='http://data.everypolitician.org/mongolia/term_table.html'>EveryPolitician</a>"],
+        ['New Zealand', 5, "<a href='http://data.everypolitician.org/new_zealand/term_table.html'>EveryPolitician</a>"],
+        ['Niger', 5, "<a href='http://data.everypolitician.org/niger/term_table.html'>EveryPolitician</a>"],
+        ['Northern Ireland', 5, "<a href='http://data.everypolitician.org/northern_ireland/term_table.html'>EveryPolitician</a>"],
+        ['Montenegro', 5, "<a href='http://data.everypolitician.org/montenegro/term_table.html'>EveryPolitician</a>"],
+        ['Portugal', 5, "<a href='http://data.everypolitician.org/portugal/term_table.html'>EveryPolitician</a>"],
+        ['Scotland', 5, "<a href='http://data.everypolitician.org/scotland/term_table.html'>EveryPolitician</a>"],
+        ['Tanzania', 5, "<a href='http://data.everypolitician.org/tanzania/term_table.html'>EveryPolitician</a>"],
+        ['Turkey', 5, "<a href='http://data.everypolitician.org/turkey/term_table.html'>EveryPolitician</a>"],
+        ['Zambia', 5, "<a href='http://data.everypolitician.org/zambia/term_table.html'>EveryPolitician</a>"],
+
+        ['Albania', 3, "<a href='http://api.parldata.eu/al/'>parldata.eu/al</a>"],
+        ['Argentina', 3, "<a href='https://cargografias.popit.mysociety.org'>cargografias.popit.mysociety.org</a> + <a href='https://legisladores-ar.popit.mysociety.org'>legisladores-ar.popit.mysociety.org</a>"],
+        ['Czech Republic', 3, "<a href='http://api.parldata.eu/cz/'>parldata.eu/cz</a>"],
+        ['Greece', 3, "<a href='https://greekparliament.popit.mysociety.org'>greekparliament.popit.mysociety.org</a>"],
+        ['Guatemala', 3, "<a href='https://congresistas-gt.popit.mysociety.org'>congresistas-gt.popit.mysociety.org</a>"],
+        ['Hungary', 3, "<a href='http://api.parldata.eu/hu/'>parldata.eu/hu</a>"],
+        ['India', 2, "<a href='https://chetan.popit.mysociety.org'>chetan.popit.mysociety.org</a> (Out of Date)"],
+        ['Kenya', 3, "<a href='https://kenyan-politicians.popit.mysociety.org'>kenyan-politicians.popit.mysociety.org</a>"],
+        ['Malaysia', 3, "<a href='https://sinar-malaysia.popit.mysociety.org'>sinar-malaysia.popit.mysociety.org</a>"],
+        ['Mexico', 3, "<a href='https://legisladores-mx.popit.mysociety.org'>legisladores-mx.popit.mysociety.org</a>"],
+        ['Micronesia', 3, "<a href='https://micronesiagovernment.popit.mysociety.org'>micronesiagovernment.popit.mysociety.org</a>"],
+        ['Nigeria', 3, "<a href='https://nigerian-politicians.popit.mysociety.org'>nigerian-politicians.popit.mysociety.org</a>"],
+        ['Paraguay', 3, "<a href='https://parlamentarios-py.popit.mysociety.org'>parlamentarios-py.popit.mysociety.org</a>"],
+        ['Poland', 3, "<a href='http://api.parldata.eu/pl/'>parldata.eu/pl</a>"],
+        ['Serbia', 3, "<a href='http://api.parldata.eu/rs/'>parldata.eu/rs</a>"],
+        ['Slovakia', 3, "<a href='http://api.parldata.eu/sk/'>parldata.eu/sk</a>"],
+        ['South Africa', 3, "<a href='https://za-peoples-assembly.popit.mysociety.org'>za-peoples-assembly.popit.mysociety.org</a>"],
+        ['South Korea', 3, "<a href='https://southkorea.popit.mysociety.org'>southkorea.popit.mysociety.org</a>"],
+        ['Taiwan', 3, "<a href='https://taiwan.popit.mysociety.org'>taiwan.popit.mysociety.org</a>"],
+        ['United Kingdom', 3, "<a href='https://parliament.popit.mysociety.org'>parliament.popit.mysociety.org</a>"],
+      ]);
+
+
+
+      var options = {
+          colorAxis: {colors: ['#afe8e1', '#01BFA9']},
+          datalessRegionColor: '#e9e9e9',
+          tooltip: {
+              isHtml: true,
+              trigger: 'selection'
+          },
+          legend: 'none'
+      };
+
+      var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+      chart.draw(data, options);
+    }
+  </script>
+
+

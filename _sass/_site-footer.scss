@@ -1,0 +1,45 @@
+.site-footer {
+    @extend %page-section;
+    @include clearfix;
+    border-top: 1px solid $colour_borders;
+    .container {
+        @media (min-width: $medium_screen) {
+            padding:  0 2em;
+            position: relative;
+        }
+    }
+}
+
+.tiny-logo {
+    font-size: 1.5em;
+    letter-spacing: -2px;
+    color: $colour_black;
+}
+
+.footer__about {
+    color: $colour_mid_grey;
+    p {
+        font-size: 0.777777778em;
+        line-height: 1.6em;
+    }
+    a {
+        color: $colour_dark_grey;
+        text-decoration: underline;
+        &:hover,
+        &:active,
+        &:focus {
+            color:darken($colour_links, 10%);
+        }
+    }
+    nav {
+        position: relative;
+        top: 2.5em;
+        font-size: 0.777777778em;
+        text-align: right;
+        a {
+            margin-right: 1em;
+        }
+    }
+}
+
+

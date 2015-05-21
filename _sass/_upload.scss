@@ -1,0 +1,157 @@
+.add-heading {
+    margin-top: 2em;
+    text-align: center;
+}
+
+.add-your-data-area {
+    text-align: center;
+    .standard-page-wrapper {
+        padding-bottom: 0;
+    }
+}
+
+.upload-area {
+    position: relative;
+}
+
+.uploader {
+    background-color: rgba(255,255,255,0.3);
+    min-height: 11em;
+    max-width: 20em;
+    margin: 1em auto 2em;
+    @include vendor-prefix(border-radius, ($border_radius * 2));
+    position: relative;
+    border: 5px dashed rgba(0,0,0,0.2);
+    transition: all $animation-short;
+    &:hover {
+        cursor: pointer;
+        border-color: rgba(0,0,0,0.4);
+        background-color: rgba(255,255,255,0.4);
+        transition: all $animation-short;
+        .drag-and-drop {
+            color: rgba(0,0,0,0.5);
+            transition: color $animation-short;
+        }
+    }
+}
+
+.drag-and-drop {
+    color: rgba(0,0,0,0.3);
+    font-weight: $body_typeface_bold;
+    font-size: 1.5em;
+    position: absolute;
+    top: 27%;
+    text-align: center;
+    width: 100%;
+    z-index: 50;
+    text-transform: uppercase;
+    transition: color $animation-short;
+}
+
+.dz-message {
+    position: absolute;
+    top: 50%;
+    padding: 0 3em;
+}
+
+.dz-preview {
+    background-color: $colour_white;
+    color: $colour_black;
+    padding: 0 1em 1em;
+    @include vendor-prefix(border-radius, $border_radius);
+    @include vendor-prefix(box-shadow, (0 0 9px 1px rgba(0,0,0,0.2)));
+    margin: 0 auto;
+    min-height: 13em;
+    max-width: 20em;
+    width: 20em;
+    z-index: 100;
+    top: 0;
+    left: 50%;
+    margin-left: -10em;
+    position: absolute;
+}
+
+.dz-success-mark,
+.dz-error-mark {
+    display: none;
+}
+
+.popit-upload-button {
+    @include vendor-prefix(border-top-left-radius, 0);
+    @include vendor-prefix(border-bottom-left-radius, 0);
+}
+q
+input.popit-name-form-field {
+    @include vendor-prefix(border-top-right-radius, 0);
+    @include vendor-prefix(border-bottom-right-radius, 0);
+    margin-bottom: 1em;
+}
+
+.popit-submit-area {
+    margin-top: 3em;
+    @extend .layout-equal-columns;
+    h1 {
+        text-align: center;
+        margin-bottom: 0.75em;
+    }
+}
+
+.popit-submit-form {
+    background-color: $colour_off_white;
+    padding: 1em;
+    @include vendor-prefix(border-radius, $border-radius);
+    label {
+        display: block;
+        margin-bottom: 0.5em;
+    }
+    select {
+        -webkit-appearance: none;
+           -moz-appearance: none;
+                appearance: none;
+        padding: 0.7em 1em;
+        border: 1px solid $colour_borders;
+        background-color: #fff;
+        position: relative;
+        min-width: 20em;
+        background-image: url('../assets/img/arrow-pointing-down.png');
+        background-repeat: no-repeat;
+        background-position: 97% 50%;
+    }
+}
+
+
+.json-preview-area {
+    max-height: 55em;
+    overflow-y: scroll;
+}
+
+.status-message {
+    display: block;
+    background-image: url('../assets/img/ajax-loader.gif');
+    background-position: 1em 50%;
+    background-repeat: no-repeat;
+    background-color: #f4f4f4;
+    padding: 1em 1.5em 1em 3em;
+    @include vendor-prefix(border-radius, $border_radius);
+}
+
+.success-area {
+    text-align: center;
+}
+
+.success-box {
+    background-color: #f4f4f4;
+    padding: 1.5em 1.5em 1em;
+    @include vendor-prefix(border-radius, $border_radius);
+    margin-bottom: 2em;
+    margin-top: 2em;
+    .button {
+        display: block;
+        width: auto;
+        margin: 0.5em auto 0;
+    }
+}
+
+.success-message {
+    font-size: 1.3em;
+}

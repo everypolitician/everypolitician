@@ -1,0 +1,327 @@
+---
+
+---
+
+@import 'normalize';
+@import 'mixins';
+@import 'variables';
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+ }
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: $colour_background;
+    color: $colour_black;
+    font-family: $body_typeface;
+    font-size: 1.125em; //18px
+    height: 100%;
+    line-height: 1.388888889em; //25px
+    min-height: 100%;
+
+    @media (min-width:$medium_screen) {
+        line-height: 1.5em; //27px
+    }
+}
+
+a {
+    color: $colour_links;
+    text-decoration: none;
+    &:hover,
+    &:active,
+    &:focus {
+        color:darken($colour_links, 10%);
+    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $heading_typeface;
+    line-height: 1.1em;
+    margin-bottom: 0.33em;
+    margin-top: 0;
+    font-weight: $heading_typeface_bold;
+}
+
+h1,
+.primary-heading {
+    font-size: 2.666666667em; //48px
+    @media (min-width:$medium_screen) {
+        font-size: 4em; //72px
+    }
+}
+
+h2,
+.secondary-heading {
+    font-size: 2em; //36px
+    @media (min-width:$medium_screen) {
+        font-size: 2.444444444em; //44px
+    }
+}
+
+h3,
+.tertiary-heading {
+    font-size: 1.166666667em; //21px
+    line-height: 1.4em;
+    @media (min-width:$medium_screen) {
+        font-size: 1.277777778em; //23px
+    }
+}
+
+h4,
+.quarternary-heading {
+    font-size: 1.055555556em; //19px
+    @media (min-width:$medium_screen) {
+        font-size: 1.166666667em; //21px
+    }
+}
+
+p {
+    margin: 0 0 1em 0;
+}
+
+pre, code, kbd, samp {
+    font-family: Consolas, 'Liberation Mono', Courier, monospace;
+}
+
+code {
+    @include vendor-prefix(border-radius, $border_radius);
+    border: 1px solid $colour_borders;
+    padding: 0 0.2em;
+}
+
+pre {
+    background-color: $colour_background;
+    @include vendor-prefix(border-radius, $border_radius);
+    border: 1px solid $colour_borders;
+    display: block;
+    font-size: .9375em;
+    line-height: 1.4375em;
+    max-width: 100%;
+    overflow-x: scroll;
+    padding: 1em;
+    white-space: pre-wrap;
+    code {
+        border: none;
+        padding: 0;
+    }
+}
+
+hr {
+    border: none;
+    border-top: 1px solid $colour_borders;
+    margin: 0;
+}
+
+audio,
+video,
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+ol,
+ul {
+    padding-left: 1.8em;
+}
+
+th {
+    text-align: left;
+}
+
+strong, b {
+    font-weight: $body_typeface_bold;
+}
+
+mark {
+    background-color: lighten($colour_red, 20%);
+}
+
+blockquote {
+    @include vendor-prefix(border-radius, $border_radius);
+    clear: both;
+    color: $colour_dark_grey;
+    font-size: 1.125em;
+    font-style: italic;
+    line-height: 1.5em;
+    margin: 1em 0;
+    padding: 1em 1em 1em 1.5em;
+}
+
+input[type=file] {
+    max-width: 100%;
+    width: 100%;
+}
+
+input[type=text],
+input[type=password],
+input[type=url],
+input[type=email],
+input[type=number],
+input[type=tel],
+input[type=search],
+input[type=time],
+input[type=datalist],
+input[type=date],
+textarea,
+.standard-input {
+    @include vendor-prefix(border-radius, $border_radius);
+    border: 1px solid $colour_borders;
+    max-width: 100%;
+    padding: 0.66em;
+}
+
+input[type=text],
+input[type=password],
+input[type=url],
+input[type=email],
+input[type=number],
+input[type=tel],
+input[type=search],
+textarea {
+    -webkit-appearance: none;
+}
+
+fieldset {
+    padding: 0;
+    border: 0;
+    margin: 0;
+}
+
+legend {
+    font-family: $heading_typeface;
+    font-size: 1.764705882em;
+    font-weight: $heading_typeface_bold;
+    line-height: 1.1em;
+    margin-bottom: 0.33em;
+}
+
+table {
+    border-collapse: collapse;
+    font-size: 0.875em;
+    margin: 1em 0;
+    max-width: 100%;
+    width: 100%;
+    p {
+        margin: 0;
+    }
+}
+
+td, th {
+    border-bottom: 1px solid $colour_borders;
+    padding: 0.75em 0.6em;
+    text-align: left;
+}
+
+th {
+    background: inherit;
+}
+
+th[scope="row"] {
+    color: $colour_dark_grey;
+}
+
+tbody {
+    tr:hover {
+        background-color: $colour_background;
+        th[scope="row"] {
+            color: $colour_black;
+        }
+
+    }
+}
+
+caption {
+    color: $colour_dark_grey;
+    margin: 0;
+    padding: 0.5em 0;
+    text-align: left;
+}
+
+tfoot {
+    font-size: 0.875em;
+    font-weight: normal;
+    td {
+        text-align: right;
+        border: none;
+    }
+}
+
+@import 'layouts';
+@import 'components';
+@import 'site-header';
+@import 'site-footer';
+@import 'homepage';
+@import 'upload';
+
+.page-header {
+    text-align: center;
+    margin: 2em 0;
+    .subtitle {
+        margin-bottom: 0;
+    }
+    h1 {
+        @extend .secondary-heading;
+        margin-bottom: 1em;
+    }
+}
+
+.download-area {
+    padding: 0 0 2em;
+    .button {
+        font-size: 1.166666667em;
+        margin-right: 0.5em;
+    }
+}
+
+.all-the-code {
+    max-height: 30em;
+    overflow-y: scroll;
+    margin-bottom: 4em;
+    background-color: #f4f4f4;
+}
+
+.message {
+    font-size: 1.166666667em;
+    line-height: 1.5em;
+    max-width: 36em;
+    margin: 0 auto 2em;
+}
+
+.standard-page-wrapper {
+    @extend %page-section;
+    max-width: 36em;
+    margin: 0 auto;
+}
+
+#add-your-data-area {
+}
+
+#popit-submit-area { 
+  display: none;
+}
+
+#polling-area {
+  display: none;
+}
+
+#success-area {
+  display: none;
+}
+
+#json-preview-area {
+  color: 'black';
+  font-size: small;
+  text-align: left;
+}
+
+#popit-submit-form {
+  display: none;
+}
+
+#popit-login-status #has-popits {
+  display: none;
+}
