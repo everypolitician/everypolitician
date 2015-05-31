@@ -26,6 +26,7 @@ layout: default
 
   <script type="text/javascript">
 
+    var ep_countries = {};
     var other_countries = {
       AL: 'http://api.parldata.eu/al/',
       AR: 'https://cargografias.popit.mysociety.org',
@@ -47,22 +48,16 @@ layout: default
       FM: 'https://micronesiagovernment.popit.mysociety.org',
     }
 
-
-
     var draw_map = function() {
-
       var colors = {}
       $.each(Object.keys(other_countries), function(i, v) { colors[v] = '#afe8e1' });
       $.each(Object.keys(ep_countries),    function(i, v) { colors[v] = '#01BFA9' });
-      console.log( colors );
 
-      var regionStyling = { initial: { fill: '#f4f3f0' }};
-      
       $('#vmap').vectorMap({
         map: 'world_mill_en',
         normalizeFunction: 'polynomial',
         backgroundColor: 'white',
-        regionStyle: regionStyling,
+        regionStyle: { initial: { fill: '#f4f3f0' }},
         hoverColor: false,
         series: {
           regions: [{
@@ -74,7 +69,6 @@ layout: default
           event.preventDefault();
           if(ep_link = ep_countries[code]) { 
             var url = 'http://data.everypolitician.org' + ep_link + '/term_table.html'
-            console.log(url)
             window.location = url;
           } else if (ex_link = other_countries[code]) { 
             window.location = ex_link
@@ -82,20 +76,22 @@ layout: default
           return false;
         },
       });
-
     };
 
-    var latest_commit = '2616cd3d3c001d0fe11de8c059b7584a8311a12a'
-    var gh_raw = 'https://cdn.rawgit.com/everypolitician/everypolitician-data/' + latest_commit + '/countries.json';
-    var ep_countries = {}
-    var ep_json = $.getJSON(gh_raw, function(data) { 
-      $.each(data, function(i, val) { 
-        if (val.code == 'XK') { val.code = '_0' }
-        ep_countries[val.code] = val.url
+    var get_countries_list = function(sha) { 
+      var gh_raw = 'https://cdn.rawgit.com/everypolitician/everypolitician-data/' + sha + '/countries.json';
+      var ep_json = $.getJSON(gh_raw, function(data) { 
+        $.each(data, function(i, val) { 
+          if (val.code == 'XK') { val.code = '_0' }
+          ep_countries[val.code] = val.url
+        });
+        jQuery(document).ready(draw_map());
       });
-      console.log(ep_countries);
-      jQuery(document).ready(draw_map());
+    };
+
+    var gh_ref = 'https://api.github.com/repos/everypolitician/everypolitician-data/git/refs/heads/gh-pages';
+    $.getJSON(gh_ref, function(data) { 
+      get_countries_list(data.object.sha);
     });
 
   </script>
-
