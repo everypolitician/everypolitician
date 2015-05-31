@@ -20,49 +20,61 @@ layout: default
   <div class="homepage-map">
       <div class="container">
           <h2 id="map">Our progress</h2>
-          <div id="vmap" style="width: 1000px; height: 500px"></div>
+          <div id="vmap" style="width: 100%; height: 600px"></div>
       </div>
   </div>
 
   <script type="text/javascript">
 
     var other_countries = {
-      al: 'http://api.parldata.eu/al/',
-      ar: 'https://cargografias.popit.mysociety.org',
-      cz: 'http://api.parldata.eu/cz/',
-      gr: 'https://greekparliament.popit.mysociety.org',
-      gt: 'https://congresistas-gt.popit.mysociety.org',
-      hu: 'http://api.parldata.eu/hu/',
-      in: 'https://chetan.popit.mysociety.org',
-      ke: 'https://kenyan-politicians.popit.mysociety.org',
-      my: 'https://sinar-malaysia.popit.mysociety.org',
-      mx: 'https://legisladores-mx.popit.mysociety.org',
-      ng: 'https://nigerian-politicians.popit.mysociety.org',
-      pl: 'http://api.parldata.eu/pl/',
-      rs: 'http://api.parldata.eu/rs/',
-      sk: 'http://api.parldata.eu/sk/',
-      za: 'https://za-peoples-assembly.popit.mysociety.org',
-      kr: 'https://southkorea.popit.mysociety.org',
-      tw: 'https://taiwan.popit.mysociety.org',
-      // Micronesia: 'https://micronesiagovernment.popit.mysociety.org',
+      AL: 'http://api.parldata.eu/al/',
+      AR: 'https://cargografias.popit.mysociety.org',
+      CZ: 'http://api.parldata.eu/cz/',
+      GR: 'https://greekparliament.popit.mysociety.org',
+      GT: 'https://congresistas-gt.popit.mysociety.org',
+      HU: 'http://api.parldata.eu/hu/',
+      IN: 'https://chetan.popit.mysociety.org',
+      KE: 'https://kenyan-politicians.popit.mysociety.org',
+      MY: 'https://sinar-malaysia.popit.mysociety.org',
+      MX: 'https://legisladores-mx.popit.mysociety.org',
+      NG: 'https://nigerian-politicians.popit.mysociety.org',
+      PL: 'http://api.parldata.eu/pl/',
+      RS: 'http://api.parldata.eu/rs/',
+      SK: 'http://api.parldata.eu/sk/',
+      ZA: 'https://za-peoples-assembly.popit.mysociety.org',
+      KR: 'https://southkorea.popit.mysociety.org',
+      TW: 'https://taiwan.popit.mysociety.org',
+      FM: 'https://micronesiagovernment.popit.mysociety.org',
     }
 
+
+
     var draw_map = function() {
+
       var colors = {}
       $.each(Object.keys(other_countries), function(i, v) { colors[v] = '#afe8e1' });
       $.each(Object.keys(ep_countries),    function(i, v) { colors[v] = '#01BFA9' });
-      jQuery('#vmap').vectorMap({ 
-        map: 'world_en',
-        backgroundColor: '#ffffff',
+      console.log( colors );
+
+      var regionStyling = { initial: { fill: '#f4f3f0' }};
+      
+      $('#vmap').vectorMap({
+        map: 'world_mill_en',
+        normalizeFunction: 'polynomial',
+        backgroundColor: 'white',
+        regionStyle: regionStyling,
         hoverColor: false,
-        colors: colors,
+        series: {
+          regions: [{
+            values: colors,
+            attribute: 'fill'
+          }]
+        },
         onRegionClick: function(event, code, region) { 
           event.preventDefault();
-          if ($(event.currentTarget).data('mapObject').isMoving) {
-            return false;
-          }
           if(ep_link = ep_countries[code]) { 
             var url = 'http://data.everypolitician.org' + ep_link + '/term_table.html'
+            console.log(url)
             window.location = url;
           } else if (ex_link = other_countries[code]) { 
             window.location = ex_link
@@ -70,6 +82,7 @@ layout: default
           return false;
         },
       });
+
     };
 
     var latest_commit = '2616cd3d3c001d0fe11de8c059b7584a8311a12a'
@@ -77,9 +90,10 @@ layout: default
     var ep_countries = {}
     var ep_json = $.getJSON(gh_raw, function(data) { 
       $.each(data, function(i, val) { 
-        ep_countries[val.code.toLowerCase()] = val.url
+        if (val.code == 'XK') { val.code = '_0' }
+        ep_countries[val.code] = val.url
       });
-      // console.log(ep_countries);
+      console.log(ep_countries);
       jQuery(document).ready(draw_map());
     });
 
