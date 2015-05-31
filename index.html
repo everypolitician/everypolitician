@@ -20,7 +20,7 @@ layout: default
   <div class="homepage-map">
       <div class="container">
           <h2 id="map">Our progress</h2>
-          <div id="vmap" style="width: 1000px; height: 500px"></div>
+          <div id="vmap" style="height: 900px"></div>
       </div>
   </div>
 
@@ -47,29 +47,31 @@ layout: default
       // Micronesia: 'https://micronesiagovernment.popit.mysociety.org',
     }
 
+
+
     var draw_map = function() {
+
       var colors = {}
-      $.each(Object.keys(other_countries), function(i, v) { colors[v] = '#afe8e1' });
-      $.each(Object.keys(ep_countries),    function(i, v) { colors[v] = '#01BFA9' });
-      jQuery('#vmap').vectorMap({ 
-        map: 'world_en',
-        backgroundColor: '#ffffff',
+      $.each(Object.keys(other_countries), function(i, v) { colors[v.toUpperCase()] = '#afe8e1' });
+      $.each(Object.keys(ep_countries),    function(i, v) { colors[v.toUpperCase()] = '#01BFA9' });
+      console.log( colors );
+
+      var regionStyling = { initial: { fill: '#f4f3f0' }};
+      
+      $('#vmap').vectorMap({
+        map: 'world_mill_en',
+        normalizeFunction: 'polynomial',
+        backgroundColor: 'white',
+        regionStyle: regionStyling,
         hoverColor: false,
-        colors: colors,
-        onRegionClick: function(event, code, region) { 
-          event.preventDefault();
-          if ($(event.currentTarget).data('mapObject').isMoving) {
-            return false;
-          }
-          if(ep_link = ep_countries[code]) { 
-            var url = 'http://data.everypolitician.org' + ep_link + '/term_table.html'
-            window.location = url;
-          } else if (ex_link = other_countries[code]) { 
-            window.location = ex_link
-          }
-          return false;
-        },
+        series: {
+          regions: [{
+            values: colors,
+            attribute: 'fill'
+          }]
+        }
       });
+
     };
 
     var latest_commit = '2616cd3d3c001d0fe11de8c059b7584a8311a12a'
