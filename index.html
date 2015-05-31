@@ -25,95 +25,63 @@ layout: default
   </div>
 
   <script type="text/javascript">
-  var ep_countries = { 
-    ad: 'andorra',
-    ao: 'angola',
-    au: 'australia',
-    bd: 'bangladesh',
-    by: 'belarus',
-    bi: 'burundi',
-    br: 'brazil',
-    bt: 'bhutan',
-    bw: 'botswana',
-    ca: 'canada',
-    cg: 'congo-brazzaville',
-    cl: 'chile',
-    de: 'germany',
-    gh: 'ghana',
-    dk: 'denmark',
-    ee: 'estonia',
-    fi: 'finland',
-    gb: 'uk',
-    gl: 'greenland',
-    ir: 'iran',
-    is: 'israel',
-    it: 'italy',
-    kz: 'kazakhstan',
-    lr: 'liberia',
-    me: 'montenegro',
-    mn: 'mongolia',
-    mw: 'malawi',
-    ne: 'niger',
-    nz: 'new_zealand',
-    py: 'paraguay',
-    pt: 'portugal',
-    rw: 'rwanda',
-    sr: 'suriname',
-    tr: 'turkey',
-    tz: 'tanzania',
-    zm: 'zambia',
-    // Kosovo
-    // Northern Ireland
-    // Scotland
-    // Wales
-  };
 
-  var other_countries = {
-    al: 'http://api.parldata.eu/al/',
-    ar: 'https://cargografias.popit.mysociety.org',
-    cz: 'http://api.parldata.eu/cz/',
-    gr: 'https://greekparliament.popit.mysociety.org',
-    gt: 'https://congresistas-gt.popit.mysociety.org',
-    hu: 'http://api.parldata.eu/hu/',
-    in: 'https://chetan.popit.mysociety.org',
-    ke: 'https://kenyan-politicians.popit.mysociety.org',
-    my: 'https://sinar-malaysia.popit.mysociety.org',
-    mx: 'https://legisladores-mx.popit.mysociety.org',
-    ng: 'https://nigerian-politicians.popit.mysociety.org',
-    pl: 'http://api.parldata.eu/pl/',
-    rs: 'http://api.parldata.eu/rs/',
-    sk: 'http://api.parldata.eu/sk/',
-    za: 'https://za-peoples-assembly.popit.mysociety.org',
-    kr: 'https://southkorea.popit.mysociety.org',
-    tw: 'https://taiwan.popit.mysociety.org',
-    // Micronesia: 'https://micronesiagovernment.popit.mysociety.org',
-  }
+    var other_countries = {
+      al: 'http://api.parldata.eu/al/',
+      ar: 'https://cargografias.popit.mysociety.org',
+      cz: 'http://api.parldata.eu/cz/',
+      gr: 'https://greekparliament.popit.mysociety.org',
+      gt: 'https://congresistas-gt.popit.mysociety.org',
+      hu: 'http://api.parldata.eu/hu/',
+      in: 'https://chetan.popit.mysociety.org',
+      ke: 'https://kenyan-politicians.popit.mysociety.org',
+      my: 'https://sinar-malaysia.popit.mysociety.org',
+      mx: 'https://legisladores-mx.popit.mysociety.org',
+      ng: 'https://nigerian-politicians.popit.mysociety.org',
+      pl: 'http://api.parldata.eu/pl/',
+      rs: 'http://api.parldata.eu/rs/',
+      sk: 'http://api.parldata.eu/sk/',
+      za: 'https://za-peoples-assembly.popit.mysociety.org',
+      kr: 'https://southkorea.popit.mysociety.org',
+      tw: 'https://taiwan.popit.mysociety.org',
+      // Micronesia: 'https://micronesiagovernment.popit.mysociety.org',
+    }
 
-  var colors = {}
-  $.each(Object.keys(ep_countries),    function(i, v) { colors[v] = '#01BFA9' });
-  $.each(Object.keys(other_countries), function(i, v) { colors[v] = '#afe8e1' });
-
-  jQuery(document).ready(function() {
-    jQuery('#vmap').vectorMap({ 
-      map: 'world_en',
-      backgroundColor: '#ffffff',
-      hoverColor: false,
-      colors: colors,
-      onRegionClick: function(event, code, region) { 
-        event.preventDefault();
-        if ($(event.currentTarget).data('mapObject').isMoving) {
+    var draw_map = function() {
+      var colors = {}
+      $.each(Object.keys(other_countries), function(i, v) { colors[v] = '#afe8e1' });
+      $.each(Object.keys(ep_countries),    function(i, v) { colors[v] = '#01BFA9' });
+      jQuery('#vmap').vectorMap({ 
+        map: 'world_en',
+        backgroundColor: '#ffffff',
+        hoverColor: false,
+        colors: colors,
+        onRegionClick: function(event, code, region) { 
+          event.preventDefault();
+          if ($(event.currentTarget).data('mapObject').isMoving) {
+            return false;
+          }
+          if(ep_link = ep_countries[code]) { 
+            var url = 'http://data.everypolitician.org' + ep_link + '/term_table.html'
+            window.location = url;
+          } else if (ex_link = other_countries[code]) { 
+            window.location = ex_link
+          }
           return false;
-        }
+        },
+      });
+    };
 
-        if(ep_link = ep_countries[code]) { 
-          var url = 'http://data.everypolitician.org/' + ep_link + '/term_table.html'
-          window.location = url;
-        } else if (ex_link = other_countries[code]) { 
-          window.location = ex_link
-        }
-        return false;
-      },
+    var latest_commit = '2616cd3d3c001d0fe11de8c059b7584a8311a12a'
+    var gh_raw = 'https://cdn.rawgit.com/everypolitician/everypolitician-data/' + latest_commit + '/countries.json';
+    var ep_countries = {}
+    var ep_json = $.getJSON(gh_raw, function(data) { 
+      $.each(data, function(i, val) { 
+        ep_countries[val.code.toLowerCase()] = val.url
+      });
+      // console.log(ep_countries);
+      jQuery(document).ready(draw_map());
     });
-  });
+
   </script>
 
