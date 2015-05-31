@@ -90,6 +90,7 @@ layout: default
     var ep_countries = {}
     var ep_json = $.getJSON(gh_raw, function(data) { 
       $.each(data, function(i, val) { 
+        if (val.code == 'XK') { val.code = '_0' }
         ep_countries[val.code] = val.url
       });
       console.log(ep_countries);
