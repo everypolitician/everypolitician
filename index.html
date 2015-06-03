@@ -68,7 +68,7 @@ layout: default
         onRegionClick: function(event, code, region) { 
           event.preventDefault();
           if(ep_link = ep_countries[code]) { 
-            var url = 'http://data.everypolitician.org' + ep_link + '/term_table.html'
+            var url = 'http://data.everypolitician.org' + ep_link;
             window.location = url;
           } else if (ex_link = other_countries[code]) { 
             window.location = ex_link
