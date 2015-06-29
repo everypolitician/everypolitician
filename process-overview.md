@@ -1,21 +1,21 @@
 EveryPolitician system overview
-----
+===============================
 
 Behind the scenes, the EveryPolitician project is driven by several distinct  github repos. It's set up to make Good Things happen when data is updated. This is an overview of how it all hangs together (currently).
 
-> Note: at some stage we're going to combine the everypolitician repo and the
-> everypolitician-data repo into one
+> Note: at some stage we're going to combine the `everypolitician` repo and the
+> `viewer-static` repo into one
 
 Key things to know:
-===================
+-------------------
 
 * the public project website is at [everypolitician.org](http://everypolitician.org)
-* repo [everypolitician](https://github.com/everypolitician/everypolitician) contains the static site (served from github gh-pages)
+* repo [everypolitician](https://github.com/everypolitician/everypolitician) contains the static site (served from github `gh-pages`)
 * repo [data.everypolitician](https://github.com/everypolitician/everypolitician-data) contains the static site's data that's been collected and collated:
   - expressed both as one JSON (Popolo) file
   - ...and CSV files, one per term (e.g., the current parliament is one term)
 * and as this is the data, we're serving those data files off github (in fact, it's from the [RawGit cacheing proxy](https://rawgit.com/faq), because that does the Right Thing with MIME-types)
-* the file `countries.json` in `everypolitician-data` is important because it not only declares which countries are represented, but also links to the most recent data files (because `countries.json` includes `lastmod` timestamps and git commit SHAs for the countries' data files)
+* the file `countries.json` in `everypolitician-data` is important because it not only declares which countries are represented, but also links to the most up-to-date files (because `countries.json` includes `lastmod` timestamps and git commit SHAs for the countries' data files)
 
 The EveryPolitician project is fundamentally about collating data for each country. That data comes from external sources of Open Data, and that's identified in the each country's own directory within the `everypolitician-data` repo too (for example: here's [Australia's source](https://github.com/everypolitician/everypolitician-data/tree/master/data/Australia/Parliament). In there you can usually see
 
@@ -25,19 +25,21 @@ The EveryPolitician project is fundamentally about collating data for each count
    * CSV files for the data sliced up for each term of the legislature
 
 How the data gets added
-=======================
+-----------------------
 
 Here's the process for absorbing new data. This is basically the same whether the data is entirely new, or an update to existing data.
 
 The process:
 
-* Data changes in a source (for example, a new politician is added)
+* Data changes in a source (for example, a new politician is added). Normally this happens because we're aware that the data has changed, but
+  alternatively it could be a regular, speculative update to absorb any changes.
+  There are two parts to how this gets absorbed.
 
-* `countries.json` is updated by running the rake task [by one of the team].
-  Normally this happens because we're aware that the data has changed, but
-  alternatively it could be a regular, speculative update to absorb any changes
+* First the data is retreived (for example, some sources are scraped from [morph.io](http://morphi.io)) and the country's data files regenerated from that source (that means building the Popolo JSON and also slicing it into the right CSV files, one for each term)
 
-* merge commit on everypolitician-data which triggers :magic:
+* Secondly `countries.json` is updated to include all the metadata about this change.
+
+* merge commit on `everypolitician-data` which triggers :magic:
 
 * we use github-event-handler running on a heroku dyno
   to notice that commit: this triggers the creation of a pull request
@@ -45,9 +47,9 @@ The process:
   The only commit in that pull request is that the new `DATASOURCE` now  contains the new, latest SHA in the URL of the new
   `countries.json`
 
-* repo [viewer-sinatra](https://github.com/everypolitician/viewer-sinatra) contains a wee Sinatra app that generates the entire EveryPolitician data website from a datasource -- specifically [*this* datasource](https://github.com/everypolitician/viewer-sinatra/blob/master/DATASOURCE) ...which of course is pointing to the new data in `everypolitician-data` 
+* repo [viewer-sinatra](https://github.com/everypolitician/viewer-sinatra) contains a wee Sinatra app that generates EveryPolitician pages on demand from a datasource -- specifically [*this* datasource](https://github.com/everypolitician/viewer-sinatra/blob/master/DATASOURCE) ...which of course is pointing to the new data in `everypolitician-data` 
 
-* The presence of the new pull request triggers the creation of a new heroku dyno of sinatra-viewer: this is a complete
+* The presence of the new pull request triggers the creation of a new heroku dyno of `viewer-sinatra`: effectively, this is a complete
   staging site previewing the new data with a URL of the form
   `https://everypolitician-viewer-pr-XXX.herokuapp.com/` where `XXX` is the
   pull request number (remember, that's the [pull request against viewer-sinatra](https://github.com/everypolitician/viewer-sinatra/pulls))
@@ -60,12 +62,12 @@ The process:
 * When travis does a successful build of the master branch (which wasn't
 triggered by a pull request -- that is, because one of the team effectively authenticated this by bringing it into master) more magic happens:
 
-* the preview website is effectively spidered and the whole site is captured as static files. That entire collection of files is added as a commit to the `gh-pages` of [viewer-static](https://github.com/everypolitician/viewer-static)
+* the preview website is spidered and the whole site is captured as static files. That entire collection of files is added as a commit to the `gh-pages` of [viewer-static](https://github.com/everypolitician/viewer-static)
 
-* the `viewer-static` repo is really a snapshot of the latest, definitive files generated by `viewer-sinatra` -- the difference being that these really are just static files. These are hosted at `data.everypolitician.org` (on github -- this is why it's a `gh-pages` brtanch)
+* the `viewer-static` repo is really a snapshot of the latest, definitive files generated by `viewer-sinatra` -- the difference being that these really are just static files. These are hosted at `data.everypolitician.org` (on github -- this is why it's a `gh-pages` branch)
 
 * At this point the data can be considered published! (And the first hit on it will cause it to be cached in RawGit)
 
 * The static site on everypolitician is automagically updated because it gets its data from `viewer-static`'s `countries.json`
 
-* The automatically-created staging sites automatically melt away when the pull request that generated them is closed. All that remains is the static [everypolitician.org](http://everypolitician.org) and its links to the most recent data.
+* The automatically-created staging sites melt away when the pull request that generated them is closed. All that remains is the static [everypolitician.org](http://everypolitician.org) and its links to the data.
