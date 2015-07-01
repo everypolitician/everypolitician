@@ -68,7 +68,7 @@ layout: default
         onRegionClick: function(event, code, region) { 
           event.preventDefault();
           if(ep_link = ep_countries[code]) { 
-            var url = 'http://data.everypolitician.org' + ep_link;
+            var url = 'http://data.everypolitician.org/' + ep_link;
             window.location = url;
           } else if (ex_link = other_countries[code]) { 
             window.location = ex_link
@@ -83,7 +83,7 @@ layout: default
       var ep_json = $.getJSON(gh_raw, function(data) { 
         $.each(data, function(i, val) { 
           if (val.code == 'XK') { val.code = '_0' }
-          ep_countries[val.code] = val.url
+          ep_countries[val.code] = val.slug.toLowerCase();
         });
         jQuery(document).ready(draw_map());
       });
