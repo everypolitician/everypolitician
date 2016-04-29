@@ -1,4 +1,42 @@
 # EveryPolitician
 
-- [everypolitician.org](http://everypolitician.org)
+> Data about every national legislature in the world, freely available for you to use
+
+- **[everypolitician.org](http://everypolitician.org)** —  [data](http://everypolitician.org/countries.html) | [about](http://docs.everypolitician.org/)
 - [Report an issue](https://github.com/everypolitician/everypolitician/issues)
+
+## Repo summary
+
+These are some of the key repos in the EveryPolitician family. There are others.
+
+- **everypolitician** (this repo): contains no code, but is where [issues/tickets for the whole project](https://github.com/everypolitician/everypolitician/issues) live
+
+- **[everypolitician-data](https://github.com/everypolitician/everypolitician-data)**: where the data is stored -- but if you want to download it, get it from:
+  - human? go via the [EveryPolitician website](http://everypolitician.org)
+  - program? use the RawGit CDN, via links in `countries.json`, which we [explain here](http://docs.everypolitician.org/repo_structure.html)
+
+- **[viewer-static](https://github.com/everypolitician/viewer-static)**: the live website http://everypolitician.org (`gh-pages`)
+
+- **[viewer-sinatra](https://github.com/everypolitician/viewer-sinatra)**: Sinatra app for generating a dynamic version EveryPolitician website
+
+- **[app-manager](https://github.com/everypolitician/app-manager)**: sends out EveryPolitician WebHooks: [register your URL here!](https://everypolitician-app-manager.herokuapp.com/)
+
+- **[everypolitician-docs]()**: documentation at http://docs.everypolitician.org/ (`gh-pages`)
+
+* **[rebuilder](https://github.com/everypolitician/rebuilder)** rebuilds data from source
+
+## Technical blog
+
+[EveryPoliticianBot is blogging on Medium](https://medium.com/@everypolitician), with some semi-technical explanations of what's going on:
+
+* [how the website is built](https://medium.com/@everypolitician/how-i-build-the-everypolitician-website-6fd581867d10)
+* [how webhooks are used](https://medium.com/@everypolitician/i-webhooks-pass-it-on-703e35e9ee93)
+* [how the scrapers run](https://medium.com/@everypolitician/getting-busy-with-scraper-data-957a2ddd9963)
+
+On [twitter as @everypolitbot](https://twitter.com/everypolitbot)
+
+...and lots more :-)
+
+## Team
+
+EveryPolitician is a [mySociety](https://www.mysociety.org) project.
