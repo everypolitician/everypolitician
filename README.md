@@ -27,15 +27,20 @@ These are some of the key repos in the EveryPolitician family. There are others.
 
 ## Technical blog
 
-[EveryPoliticianBot is blogging on Medium](https://medium.com/@everypolitician), with some semi-technical explanations of what's going on:
+The [EveryPolitician bot's own page](http://docs.everypolitician.org/bot.html)
+is a good jumping-off point to lots of semi-technical explanations of what's
+going on (it has its own blog on Medium). For example:
 
 * [how the website is built](https://medium.com/@everypolitician/how-i-build-the-everypolitician-website-6fd581867d10)
 * [how webhooks are used](https://medium.com/@everypolitician/i-webhooks-pass-it-on-703e35e9ee93)
 * [how the scrapers run](https://medium.com/@everypolitician/getting-busy-with-scraper-data-957a2ddd9963)
 
-On [twitter as @everypolitbot](https://twitter.com/everypolitbot)
+The bot is on [twitter as @everypolitbot](https://twitter.com/everypolitbot)
 
-...and lots more :-)
+## Contributing
+
+If you have data for us, or know where to get it, please read our page about
+[how to contribute](http://docs.everypolitician.org/contribute.html).
 
 ## Team
 
