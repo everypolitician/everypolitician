@@ -25,15 +25,31 @@ These are some of the key repos in the EveryPolitician family. There are others.
 
 * **[rebuilder](https://github.com/everypolitician/rebuilder)** rebuilds data from source
 
+- Ruby gems for easily manipulating EveryPolitician data (useful for all devs, but we use them too, of course!):
+  **[everypolitician-ruby](https://github.com/everypolitician/everypolitician-ruby)**
+  and **[everypolitician-popolo](https://github.com/everypolitician/everypolitician-popolo)**.
+
+- handy gems we use when getting the data:
+  **[wikidata-fetcher](https://github.com/everypolitician/wikidata-fetcher)**,
+  **[wikisnakker](https://github.com/everypolitician/wikisnakker])**,
+  **[twitter_username_extractor](https://github.com/everypolitician/twitter_username_extractor])**,
+  **[facebook_username_extractor](https://github.com/everypolitician/facebook_username_extractor)**,
+  **[twitter_list](https://github.com/everypolitician/twitter_list)**
+  
+- **[gender-balance](https://github.com/everypolitician/gender-balance)**:
+  repo for the [Gender Balance](http://www.gender-balance.org/) website that crowdsources gender data for EveryPolitician
+
+The repos for many of our scrapers are kept separately in [github.com/everypolitician-scrapers](https://github.com/everypolitician-scrapers).
+
 ## Technical blog
 
 The [EveryPolitician bot's own page](http://docs.everypolitician.org/bot.html)
 is a good jumping-off point to lots of semi-technical explanations of what's
 going on (it has its own blog on Medium). For example:
 
-* [how the website is built](https://medium.com/@everypolitician/how-i-build-the-everypolitician-website-6fd581867d10)
-* [how webhooks are used](https://medium.com/@everypolitician/i-webhooks-pass-it-on-703e35e9ee93)
-* [how the scrapers run](https://medium.com/@everypolitician/getting-busy-with-scraper-data-957a2ddd9963)
+* [how the website is built](https://medium.com/@everypolitician/how-i-build-the-everypolitician-website-6fd581867d10) (spoiler: [viewer-sinatra](https://github.com/everypolitician/viewer-sinatra) &rarr; [viewer-static](https://github.com/everypolitician/viewer-static))
+* [how webhooks are used](https://medium.com/@everypolitician/i-webhooks-pass-it-on-703e35e9ee93) (you can easily [register your app](https://everypolitician-app-manager.herokuapp.com/)!)
+* [how the scrapers run](https://medium.com/@everypolitician/getting-busy-with-scraper-data-957a2ddd9963) (many [live on morph.io](https://morph.io/everypolitician-scrapers))
 
 The bot is on [twitter as @everypolitbot](https://twitter.com/everypolitbot)
 
