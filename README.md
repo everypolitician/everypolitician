@@ -19,7 +19,7 @@ These are some of the key repos in the EveryPolitician family. There are others.
 
 - **[viewer-sinatra](https://github.com/everypolitician/viewer-sinatra)**: Sinatra app for generating a dynamic version EveryPolitician website
 
-- **[app-manager](https://github.com/everypolitician/app-manager)**: sends out EveryPolitician WebHooks: [register your URL here!](https://everypolitician-app-manager.herokuapp.com/)
+- **[webhook-manager](https://github.com/everypolitician/webhook-manager)**: sends out EveryPolitician WebHooks: [register your URL here!](https://everypolitician-app-manager.herokuapp.com/)
 
 - **[everypolitician-docs](https://github.com/everypolitician/everypolitician-docs)**: documentation at http://docs.everypolitician.org/ (`gh-pages`)
 
