@@ -39,6 +39,9 @@ These are some of the key repos in the EveryPolitician family. There are others.
 - **[gender-balance](https://github.com/everypolitician/gender-balance)**:
   repo for the [Gender Balance](http://www.gender-balance.org/) website that crowdsources gender data for EveryPolitician
 
+- **[review_changes](https://github.com/everypolitician/review_changes)**:
+  code used by the bot to review a data PR and leave a helpful summary [as a comment](https://medium.com/@everypolitician/i-m-a-bot-who-comments-d1d93b6cab63)
+
 The repos for many of our scrapers are kept separately in [github.com/everypolitician-scrapers](https://github.com/everypolitician-scrapers).
 
 ## Technical blog
