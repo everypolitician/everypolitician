@@ -25,10 +25,11 @@ These are some of the key repos in the EveryPolitician family. There are others.
 
 * **[rebuilder](https://github.com/everypolitician/rebuilder)** rebuilds data from source
 
-- Ruby gems for easily manipulating EveryPolitician data (useful for all devs, but we use them too, of course!):
-  **[everypolitician-ruby](https://github.com/everypolitician/everypolitician-ruby)**
-  and **[everypolitician-popolo](https://github.com/everypolitician/everypolitician-popolo)**.
-
+- libraries for easily manipulating EveryPolitician data (useful for all devs, but we use the Ruby ones ourselves, of course!):
+  - Ruby:
+    **[everypolitician-ruby](https://github.com/everypolitician/everypolitician-ruby)**
+    and **[everypolitician-popolo](https://github.com/everypolitician/everypolitician-popolo)**.
+  - Python: **[everypolitician-python](https://github.com/everypolitician/everypolitician-python)**
 - handy gems we use when getting the data:
   **[wikidata-fetcher](https://github.com/everypolitician/wikidata-fetcher)**,
   **[wikisnakker](https://github.com/everypolitician/wikisnakker])**,
