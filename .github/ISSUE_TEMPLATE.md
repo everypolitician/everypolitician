@@ -1,5 +1,5 @@
 Please note: this repo is for issues related to the various tools for
-building and maintaining the the EveryPolitician data.
+building and maintaining the EveryPolitician data.
 
 Issues about the data itself, or suggestions for new sources of
 information we could consume, should be reported instead at
