@@ -29,7 +29,8 @@ These are some of the key repos in the EveryPolitician family. There are others.
   - Ruby:
     **[everypolitician-ruby](https://github.com/everypolitician/everypolitician-ruby)**
     and **[everypolitician-popolo](https://github.com/everypolitician/everypolitician-popolo)**.
-  - Python: **[everypolitician-python](https://github.com/everypolitician/everypolitician-python)**
+  - Python: **[everypolitician](https://pypi.python.org/pypi/everypolitician)**
+    and **[everypolitician-popolo](https://pypi.python.org/pypi/everypolitician-popolo)**
 - handy gems we use when getting the data:
   **[wikidata-fetcher](https://github.com/everypolitician/wikidata-fetcher)**,
   **[wikisnakker](https://github.com/everypolitician/wikisnakker])**,
