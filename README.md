@@ -57,7 +57,7 @@ going on (it has its own blog on Medium). For example:
 * [how webhooks are used](https://medium.com/@everypolitician/i-webhooks-pass-it-on-703e35e9ee93) (you can easily [register your app](https://everypolitician-app-manager.herokuapp.com/)!)
 * [how the scrapers run](https://medium.com/@everypolitician/getting-busy-with-scraper-data-957a2ddd9963) (many [live on morph.io](https://morph.io/everypolitician-scrapers))
 
-The bot is on [twitter as @everypolitbot](https://twitter.com/everypolitbot)
+The bot is on [twitter as @everypolitician](https://twitter.com/everypolitician)
 
 ## Contributing
 
